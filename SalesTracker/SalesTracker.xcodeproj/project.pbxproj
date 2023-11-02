@@ -14,6 +14,7 @@
 		D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D812AF42ADB00FB4F02 /* Product.swift */; };
 		D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D832AF4470F00FB4F02 /* NewProductView.swift */; };
 		D11A8D862AF4476E00FB4F02 /* SalesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D852AF4476E00FB4F02 /* SalesModel.swift */; };
+		D11A8D892AF4507700FB4F02 /* IconPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D882AF4507700FB4F02 /* IconPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		D11A8D812AF42ADB00FB4F02 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		D11A8D832AF4470F00FB4F02 /* NewProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductView.swift; sourceTree = "<group>"; };
 		D11A8D852AF4476E00FB4F02 /* SalesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesModel.swift; sourceTree = "<group>"; };
+		D11A8D882AF4507700FB4F02 /* IconPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +89,18 @@
 		D11A8D802AF42ABE00FB4F02 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D11A8D832AF4470F00FB4F02 /* NewProductView.swift */,
+				D11A8D872AF4504000FB4F02 /* ProductManagement */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		D11A8D872AF4504000FB4F02 /* ProductManagement */ = {
+			isa = PBXGroup;
+			children = (
+				D11A8D832AF4470F00FB4F02 /* NewProductView.swift */,
+				D11A8D882AF4507700FB4F02 /* IconPicker.swift */,
+			);
+			path = ProductManagement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +175,7 @@
 			files = (
 				D11A8D862AF4476E00FB4F02 /* SalesModel.swift in Sources */,
 				D11A8D742AF425E500FB4F02 /* ContentView.swift in Sources */,
+				D11A8D892AF4507700FB4F02 /* IconPicker.swift in Sources */,
 				D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */,
 				D11A8D722AF425E500FB4F02 /* SalesTrackerApp.swift in Sources */,
 				D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */,
