@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // Creating a class to save data through
 // Swift Data
@@ -17,7 +18,7 @@ class Product: Identifiable {
     
     var icon: String
     
-    var color: String
+    var color: Color
     
     private var price: Float
     
@@ -25,11 +26,11 @@ class Product: Identifiable {
         self.id = UUID().uuidString
         self.name = "Product name"
         self.icon = "cup.and.saucer"
-        self.color = "green"
+        self.color = .green
         self.price = 0
     }
     
-    init(name: String, icon: String, color: String, price: Float) {
+    init(name: String, icon: String, color: Color, price: Float) {
         self.id = UUID().uuidString
         self.name = name
         self.icon = icon
