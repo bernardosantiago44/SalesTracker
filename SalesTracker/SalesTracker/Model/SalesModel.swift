@@ -9,4 +9,5 @@ import Foundation
 
 final class SalesModel: ObservableObject {
     @Published var Products = [Product]()
+    @Published var sampleProducts: [Product] = Product.SampleProducts
 }
