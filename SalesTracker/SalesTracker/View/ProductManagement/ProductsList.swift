@@ -50,7 +50,6 @@ struct ProductCard: View {
                         .bold()
                         .lineLimit(3)
                         .accessibilityLabel(product.name)
-                    Spacer()
                     Text(product.getPrice(), format: .currency(code: self.currencyCode))
                 }
                 .padding(.vertical)
