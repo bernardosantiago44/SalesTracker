@@ -9,12 +9,14 @@ import SwiftUI
 
 struct NewProductView: View {
     @ObservedObject var salesModel: SalesModel
-    @State private var product = Product()
+    @Environment(\.dismiss) private var dismiss
     @State private var productName = "Product name"
-    @State private var categoryColor: Color = .green
     @State private var productPrice: Float = 0
     @State private var productColor: Color = .green
     let currencyCode = Locale.current.currency?.identifier ?? "USD"
+    var isInvalidProduct: Bool {
+        return self.productName.isEmpty || self.productPrice <= 0
+    }
     
     var body: some View {
         NavigationStack {
@@ -31,11 +33,15 @@ struct NewProductView: View {
             }
             .toolbar(content: {
                 Button {
-                    
+                    let product = Product(name: self.productName, category: "", color: self.productColor, price: self.productPrice)
+                    if product.isValid() {
+                        self.salesModel.addProductToCatalog(product)
+                        dismiss()
+                    }
                 } label: {
                     Text("done")
                 }
-
+                .disabled(self.isInvalidProduct)
         })
         }
     }

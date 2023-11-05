@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ProductsList: View {
-    @ObservedObject var sharedModel: SalesModel
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @State private var showNewProductSheet = false
+    @ObservedObject var salesModel: SalesModel
+    
     var columns: [GridItem] {
         if dynamicTypeSize > .xLarge {
             return [.init(.flexible())]
@@ -17,20 +19,28 @@ struct ProductsList: View {
         return .init(repeating: .init(.flexible()), count: 2)
     }
     var products: [String : [Product]] {
-        Dictionary(grouping: self.sharedModel.sampleProducts, by: \.category)
+        Dictionary(grouping: self.salesModel.sampleProducts, by: \.category)
     }
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: self.columns) {
-                    ForEach(sharedModel.sampleProducts) { product in
-                        ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
-                    }
+        ScrollView {
+            // TODO: Separate products into categories.
+            LazyVGrid(columns: self.columns) {
+                ForEach(salesModel.Products) { product in
+                    ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
                 }
-                .padding(.horizontal)
             }
+            .padding(.horizontal)
         }
+        .navigationTitle("Products")
+        .toolbar(content: {
+            Button("addNewProduct", systemImage: "plus.circle.fill") {
+                self.showNewProductSheet.toggle()
+            }
+        })
+        .sheet(isPresented: self.$showNewProductSheet, content: {
+            NewProductView(salesModel: self.salesModel)
+        })
     }
 }
 
@@ -70,5 +80,7 @@ struct ProductCard: View {
 }
 
 #Preview {
-    ProductsList(sharedModel: SalesModel())
+    NavigationStack {
+        ProductsList(salesModel: SalesModel())
+    }
 }
