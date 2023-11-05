@@ -16,7 +16,7 @@ class Product: Identifiable {
     
     var name: String
     
-    var icon: String
+    var category: String
     
     var color: Color
     
@@ -25,20 +25,20 @@ class Product: Identifiable {
     init() {
         self.id = UUID().uuidString
         self.name = "Product name"
-        self.icon = "cup.and.saucer"
+        self.category = "default"
         self.color = .green
         self.price = 0
     }
     
-    init(name: String, icon: String, color: Color, price: Float) {
+    init(name: String, category: String, color: Color, price: Float) {
         self.id = UUID().uuidString
         self.name = name
-        self.icon = icon
+        self.category = category
         self.color = color
         self.price = price
     }
     
-    func updateIcon() {
+    func updateCategory() {
         
     }
     
