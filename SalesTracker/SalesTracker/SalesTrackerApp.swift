@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct SalesTrackerApp: App {
+    @StateObject var salesModel = SalesModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(sharedModel: self.salesModel)
         }
     }
 }
