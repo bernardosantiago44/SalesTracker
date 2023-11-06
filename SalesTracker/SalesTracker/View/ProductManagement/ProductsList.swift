@@ -34,7 +34,7 @@ struct ProductsList: View {
         }
         .navigationTitle("Products")
         .toolbar(content: {
-            Button("addNewProduct", systemImage: "plus.circle.fill") {
+            Button("createNewProduct", systemImage: "plus.circle.fill") {
                 self.showNewProductSheet.toggle()
             }
         })
