@@ -50,7 +50,7 @@ class Product: Identifiable {
     /// - Returns: Bool
     /// 
     func isValid() -> Bool {
-        return !self.id.isEmpty && !self.name.isEmpty && self.price > 0
+        return !self.id.isEmpty && !self.name.isEmpty && self.price > 0 && self.rating >= 0 && self.rating <= 5
     }
     
     func getPrice() -> Float {
