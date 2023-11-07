@@ -26,7 +26,7 @@ struct ProductsList: View {
         ScrollView {
             // TODO: Separate products into categories.
             LazyVGrid(columns: self.columns) {
-                ForEach(salesModel.Products) { product in
+                ForEach(salesModel.sampleProducts) { product in
                     ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
                 }
             }
@@ -53,6 +53,10 @@ struct ProductCard: View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundStyle(product.color.opacity(0.15))
+            
+            // Dynamic type sizes too large shoud
+            // display data in a vertical layout.
+            //
             if self.dynamicTypeSize >= .large {
                 VStack {
                     Text(product.name)
@@ -62,7 +66,7 @@ struct ProductCard: View {
                         .accessibilityLabel(product.name)
                     Text(product.getPrice(), format: .currency(code: self.currencyCode))
                 }
-                .padding(.vertical)
+                .padding(.vertical, 12)
             } else {
                 HStack {
                     Text(product.name)
@@ -73,7 +77,7 @@ struct ProductCard: View {
                     Spacer()
                     Text(product.getPrice(), format: .currency(code: self.currencyCode))
                 }
-                .padding()
+                .padding(12)
             }
         }
     }
