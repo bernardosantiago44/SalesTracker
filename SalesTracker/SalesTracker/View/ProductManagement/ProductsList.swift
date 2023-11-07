@@ -32,9 +32,9 @@ struct ProductsList: View {
             }
             .padding(.horizontal)
         }
-        .navigationTitle("Products")
+        .navigationTitle("products")
         .toolbar(content: {
-            Button("addNewProduct", systemImage: "plus.circle.fill") {
+            Button("createNewProduct", systemImage: "plus.circle.fill") {
                 self.showNewProductSheet.toggle()
             }
         })

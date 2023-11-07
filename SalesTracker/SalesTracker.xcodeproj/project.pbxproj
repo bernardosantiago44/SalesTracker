@@ -14,6 +14,7 @@
 		D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D832AF4470F00FB4F02 /* NewProductView.swift */; };
 		D11A8D862AF4476E00FB4F02 /* SalesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D852AF4476E00FB4F02 /* SalesModel.swift */; };
 		D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D882AF4507700FB4F02 /* ColorPicker.swift */; };
+		D13C2A3D2AF91A2300AB8E71 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D13C2A3F2AF91A2300AB8E71 /* Localizable.strings */; };
 		D1610EA42AF7494500C99235 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1610EA32AF7494500C99235 /* assets.xcassets */; };
 		D1A2CD762AF6BB3A0061BDAE /* SampleProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */; };
 		D1A2CD782AF6BBC20061BDAE /* ProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2CD772AF6BBC20061BDAE /* ProductsList.swift */; };
@@ -40,6 +41,8 @@
 		D11A8D832AF4470F00FB4F02 /* NewProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductView.swift; sourceTree = "<group>"; };
 		D11A8D852AF4476E00FB4F02 /* SalesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesModel.swift; sourceTree = "<group>"; };
 		D11A8D882AF4507700FB4F02 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		D13C2A3E2AF91A2300AB8E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D13C2A402AF91A4300AB8E71 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D1610EA32AF7494500C99235 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProducts.swift; sourceTree = "<group>"; };
 		D1A2CD772AF6BBC20061BDAE /* ProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsList.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 			children = (
 				D11A8D712AF425E500FB4F02 /* SalesTrackerApp.swift */,
 				D11A8D732AF425E500FB4F02 /* ContentView.swift */,
+				D13C2A3A2AF919F700AB8E71 /* Localizations */,
 				D11A8D7F2AF42AB500FB4F02 /* Model */,
 				D11A8D802AF42ABE00FB4F02 /* View */,
 				D11A8D772AF425E700FB4F02 /* Preview Content */,
@@ -132,6 +136,14 @@
 				D1A2CD772AF6BBC20061BDAE /* ProductsList.swift */,
 			);
 			path = ProductManagement;
+			sourceTree = "<group>";
+		};
+		D13C2A3A2AF919F700AB8E71 /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				D13C2A3F2AF91A2300AB8E71 /* Localizable.strings */,
+			);
+			path = Localizations;
 			sourceTree = "<group>";
 		};
 		D1CA6E792AF806C100D73C09 /* SalesTrackerTests */ = {
@@ -206,6 +218,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = D11A8D652AF425E500FB4F02;
 			productRefGroup = D11A8D6F2AF425E500FB4F02 /* Products */;
@@ -224,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1610EA42AF7494500C99235 /* assets.xcassets in Resources */,
+				D13C2A3D2AF91A2300AB8E71 /* Localizable.strings in Resources */,
 				D11A8D792AF425E700FB4F02 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,12 +286,25 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		D13C2A3F2AF91A2300AB8E71 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D13C2A3E2AF91A2300AB8E71 /* en */,
+				D13C2A402AF91A4300AB8E71 /* es */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		D11A8D7A2AF425E700FB4F02 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -341,6 +368,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  SalesTracker
+
+  Created by Bernardo Santiago Marin on 06/11/23.
+  
+*/
+
+// MARK: Useful Labels
+"done" = "Listo";
+"add" = "Agregar";
+
+// MARK: - Products Navigation & Information
+"products" = "Productos";
+"productname" = "Nombre";
+"productprice" = "Precio";
+"createNewProduct" = "Crear nuevo";
