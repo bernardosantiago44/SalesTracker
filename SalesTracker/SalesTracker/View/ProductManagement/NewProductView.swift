@@ -33,7 +33,7 @@ struct NewProductView: View {
             }
             .toolbar(content: {
                 Button {
-                    let product = Product(name: self.productName, category: "", color: self.productColor, price: self.productPrice)
+                    let product = Product(name: self.productName, category: "", color: self.productColor, price: self.productPrice, rating: 5)
                     if product.isValid() {
                         self.salesModel.addProductToCatalog(product)
                         dismiss()
