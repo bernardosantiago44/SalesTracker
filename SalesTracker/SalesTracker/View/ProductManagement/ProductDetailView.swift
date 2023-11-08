@@ -10,14 +10,16 @@ import SwiftUI
 struct ProductDetailView: View {
     let product: Product
     let currencyCode = Locale.current.currency?.identifier ?? "usd"
+    let columns: [GridItem] = .init(repeating: .init(.flexible()), count: 2)
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading) {
+            VStack {
                 #warning("Finish this UI")
                 /* FIXME: Adapt this to dynamic type sizes.
                  *        Perhaps reorganize this UI.
                  */
+                RatingVisualizer(rating: self.product.rating)
                 HStack {
                     GroupBox {
                         Text(product.getPrice(), format: .currency(code: self.currencyCode))
@@ -28,14 +30,6 @@ struct ProductDetailView: View {
                     GroupBox {
                         Text("category")
                         Text(product.category)
-                    }
-                    
-                    GroupBox {
-                        Text(product.rating, format: .number)
-                            .font(.title3)
-                        Image(systemName: "star.fill")
-                            .foregroundStyle(.yellow)
-                            .padding(.horizontal)
                     }
                 }
                 
