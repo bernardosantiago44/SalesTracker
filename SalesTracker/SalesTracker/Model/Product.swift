@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 
-// Creating a class to save data through
-// Swift Data
-//
-class Product: Identifiable {
+struct Product: Identifiable, Hashable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: String
     
     var name: String
@@ -68,7 +69,7 @@ class Product: Identifiable {
     /// Updates the current price of a Product.
     /// - Parameter newPrice: Float > 0
     /// - Returns: The last price of the product.
-    func setPrice(_ newPrice: Float) -> Float {
+    mutating func setPrice(_ newPrice: Float) -> Float {
         let oldPrice = self.getPrice()
         
         guard newPrice > 0 else {
