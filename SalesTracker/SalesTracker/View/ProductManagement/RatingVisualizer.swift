@@ -13,9 +13,15 @@ struct RatingVisualizer: View {
     let halfStarIcon = "star.leadinghalf.filled"
     
     var wholePart: UInt8 {
+        // Rating expressed in terms of half stars
+        // 3.7 stars -> 3 whole stars
+        //
         return UInt8((rating * 2).rounded()) / 2
     }
     var decimal: Bool {
+        // Determines whether the provided value
+        // requires a half star to be represented.
+        // 3.8 -> 3 whole stars + 1 half star
         return (rating * 2).rounded().truncatingRemainder(dividingBy: 2) == 1
     }
     
@@ -58,5 +64,5 @@ struct RatingVisualizer: View {
 }
 
 #Preview {
-    RatingVisualizer(rating: 4.8)
+    RatingVisualizer(rating: 2.24)
 }
