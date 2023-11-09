@@ -10,6 +10,7 @@ import SwiftUI
 struct ProductsList: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @State private var showNewProductSheet = false
+    @State private var presentedProducts = [Product]()
     @ObservedObject var salesModel: SalesModel
     
     var columns: [GridItem] {
@@ -23,23 +24,32 @@ struct ProductsList: View {
     }
     
     var body: some View {
-        ScrollView {
-            // TODO: Separate products into categories.
-            LazyVGrid(columns: self.columns) {
-                ForEach(salesModel.sampleProducts) { product in
-                    ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
+        NavigationStack(path: self.$presentedProducts) {
+            ScrollView {
+                // TODO: Separate products into categories.
+                LazyVGrid(columns: self.columns) {
+                    ForEach(salesModel.sampleProducts) { product in
+                        NavigationLink(value: product) {
+                            ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
+                                .tint(.primary)
+                        }
+                    }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
+            .navigationTitle("products")
+            .toolbar(content: {
+                Button("createNewProduct", systemImage: "plus.circle.fill") {
+                    self.showNewProductSheet.toggle()
+                }
+            })
+            .navigationDestination(for: Product.self) { product in
+                ProductDetailView(product: product)
+            }
         }
-        .navigationTitle("products")
-        .toolbar(content: {
-            Button("createNewProduct", systemImage: "plus.circle.fill") {
-                self.showNewProductSheet.toggle()
-            }
-        })
         .sheet(isPresented: self.$showNewProductSheet, content: {
             NewProductView(salesModel: self.salesModel)
+            
         })
     }
 }
@@ -84,7 +94,5 @@ struct ProductCard: View {
 }
 
 #Preview {
-    NavigationStack {
-        ProductsList(salesModel: SalesModel())
-    }
+    ProductsList(salesModel: SalesModel())
 }
