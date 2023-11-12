@@ -14,6 +14,7 @@ struct LoginView: View {
     
     var body: some View {
         // TODO: Add the logo of the App here when designed.
+        // MARK: email and password fields
         Group {
             TextField("email", text: self.$email)
             
@@ -22,7 +23,46 @@ struct LoginView: View {
         }
         .textFieldStyle(RoundedGroupTextFieldStyle())
         .padding(.horizontal)
+        
+        // MARK: Login and signup buttons
+        Group {
+            ViewThatFits {
+                HStack {
+                    signupButton
+                    
+                    Spacer()
+                    
+                    loginButton
+                }
+                VStack {
+                    signupButton
+                    loginButton
+                }
+                .padding(.vertical, 20)
+            }
+        }
+        .padding(.horizontal)
     }
+    
+    var signupButton: some View {
+        Button {
+            
+        } label: {
+            Text("signup")
+        }
+        .buttonStyle(.bordered)
+    }
+    
+    var loginButton: some View {
+        Button {
+            
+        } label: {
+            Text("login")
+        }
+        .buttonStyle(.borderedProminent)
+    }
+    
+    
 }
 
 #Preview {

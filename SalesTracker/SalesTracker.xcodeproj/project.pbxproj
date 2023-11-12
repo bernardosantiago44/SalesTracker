@@ -25,6 +25,8 @@
 		D1C4145E2B00789500D4AA26 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D1C4145D2B00789500D4AA26 /* FirebaseFirestore */; };
 		D1C414602B00789500D4AA26 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D1C4145F2B00789500D4AA26 /* FirebaseFirestoreSwift */; };
 		D1C414622B00789500D4AA26 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = D1C414612B00789500D4AA26 /* FirebaseStorage */; };
+		D1C414652B007B7200D4AA26 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C414642B007B7200D4AA26 /* LoginView.swift */; };
+		D1C414682B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */; };
 		D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */; };
 		D1CA6E7B2AF806C100D73C09 /* SalesTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA6E7A2AF806C100D73C09 /* SalesTrackerTests.swift */; };
 /* End PBXBuildFile section */
@@ -56,6 +58,8 @@
 		D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProducts.swift; sourceTree = "<group>"; };
 		D1A2CD772AF6BBC20061BDAE /* ProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsList.swift; sourceTree = "<group>"; };
 		D1C414582B00773600D4AA26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D1C414642B007B7200D4AA26 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupTextFieldStyle.swift; sourceTree = "<group>"; };
 		D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionReponse.swift; sourceTree = "<group>"; };
 		D1CA6E782AF806C100D73C09 /* SalesTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CA6E7A2AF806C100D73C09 /* SalesTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTrackerTests.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				D13C2A3A2AF919F700AB8E71 /* Localizations */,
 				D11A8D7F2AF42AB500FB4F02 /* Model */,
 				D11A8D802AF42ABE00FB4F02 /* View */,
+				D1C414662B007DAD00D4AA26 /* Helper files */,
 				D11A8D772AF425E700FB4F02 /* Preview Content */,
 			);
 			path = SalesTracker;
@@ -137,6 +142,7 @@
 		D11A8D802AF42ABE00FB4F02 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D1C414632B007B5F00D4AA26 /* Authentication */,
 				D11A8D872AF4504000FB4F02 /* ProductManagement */,
 			);
 			path = View;
@@ -161,6 +167,22 @@
 				D13C2A3F2AF91A2300AB8E71 /* Localizable.strings */,
 			);
 			path = Localizations;
+			sourceTree = "<group>";
+		};
+		D1C414632B007B5F00D4AA26 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D1C414642B007B7200D4AA26 /* LoginView.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D1C414662B007DAD00D4AA26 /* Helper files */ = {
+			isa = PBXGroup;
+			children = (
+				D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */,
+			);
+			path = "Helper files";
 			sourceTree = "<group>";
 		};
 		D1CA6E792AF806C100D73C09 /* SalesTrackerTests */ = {
@@ -289,8 +311,10 @@
 				D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */,
 				D13406542AF9CB8C00088132 /* RatingVisualizer.swift in Sources */,
 				D1A2CD762AF6BB3A0061BDAE /* SampleProducts.swift in Sources */,
+				D1C414652B007B7200D4AA26 /* LoginView.swift in Sources */,
 				D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */,
 				D1A2CD782AF6BBC20061BDAE /* ProductsList.swift in Sources */,
+				D1C414682B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift in Sources */,
 				D11A8D722AF425E500FB4F02 /* SalesTrackerApp.swift in Sources */,
 				D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */,
 				D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */,

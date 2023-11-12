@@ -10,6 +10,12 @@
 "done" = "Listo";
 "add" = "Agregar";
 
+// MARK: - Authentication
+"email" = "Correo electrónico";
+"password" = "Contraseña";
+"login" = "Iniciar sesión";
+"signup" = "Registrarse";
+
 // MARK: - Products Navigation & Information
 "products" = "Productos";
 "productname" = "Nombre";

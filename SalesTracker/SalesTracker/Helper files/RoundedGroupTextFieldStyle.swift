@@ -9,9 +9,10 @@ import SwiftUI
 
 struct RoundedGroupTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
-        configuration
-            .padding(5)
+        return configuration
+            .padding(.horizontal)
+            .padding(.vertical, 8)
             .background(Color(uiColor: .secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 15))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

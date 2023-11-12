@@ -10,6 +10,12 @@
 "done" = "Done";
 "add" = "Add";
 
+// MARK: - Authentication
+"email" = "Email";
+"password" = "Password";
+"login" = "Login";
+"signup" = "Sign Up";
+
 // MARK: - Products Navigation & Information
 "products" = "Products";
 "productname" = "Product name";
