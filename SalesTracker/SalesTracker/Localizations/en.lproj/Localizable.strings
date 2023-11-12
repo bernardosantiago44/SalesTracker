@@ -17,6 +17,11 @@
 "login" = "Login";
 "signup" = "Sign Up";
 "error_while_creating_user" = "Sign up unsuccessful";
+"email_blank" = "Please enter a valid email address.";
+"password_blank" = "Please enter a password with minimum 6 characters.";
+"email_bad" = "The entered email address is not valid: name@example.com";
+"wrong_password" = "The password is incorrect.";
+"password_weak" = "Your password seems to be easy to guess. Please try with 6+ characters.";
 
 // MARK: - Products Navigation & Information
 "products" = "Products";

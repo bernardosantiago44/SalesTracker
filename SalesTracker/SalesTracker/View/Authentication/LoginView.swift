@@ -11,8 +11,8 @@ import Firebase
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @ObservedObject var authHandler = AuthenticationHandler()
     @State private var authenticationStatus: AuthenticationStatus?
-    @State private var errorOccured = false
     
     var body: some View {
         VStack {
@@ -57,11 +57,11 @@ struct LoginView: View {
             }
             .padding(.horizontal)
         }
-        .alert("error_while_creating_user", isPresented: $errorOccured) {
+        .alert("error_while_creating_user", isPresented: self.$authHandler.errorOccured) {
             Text("close")
         } message: {
-            if let authenticationStatus, case let AuthenticationStatus.Error(message) = authenticationStatus {
-                Text(message)
+            if let authenticationStatus = authHandler.authenticationStatus, case let AuthenticationStatus.Error(message) = authenticationStatus {
+                Text(LocalizedStringKey(message))
             }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -70,7 +70,7 @@ struct LoginView: View {
     
     var signupButton: some View {
         Button {
-            register()
+            authHandler.registerUser(email: self.email, password: self.password)
         } label: {
             Text("signup")
         }
@@ -79,56 +79,11 @@ struct LoginView: View {
     
     var loginButton: some View {
         Button {
-            login()
+            authHandler.login(email: self.email, password: self.password)
         } label: {
             Text("login")
         }
         .buttonStyle(.borderedProminent)
-    }
-    
-    func register() {
-        self.errorOccured = false
-        Auth.auth().createUser(withEmail: self.email, password: self.password) { _, error in
-            if let error {
-                self.errorOccured = true
-                handleError(error)
-            }
-        }
-    }
-    
-    func login() {
-        self.errorOccured = false
-        Auth.auth().signIn(withEmail: self.email, password: self.password) { _, error in
-            if let error = error {
-                
-                print("Login error: \(error.localizedDescription)")
-                self.errorOccured = true
-                handleError(error)
-            } else {
-                print("Successful")
-            }
-        }
-    }
-    
-    func handleError(_ error: Error) {
-        let errorCode = AuthErrorCode.Code(rawValue: error._code)
-        switch errorCode {
-        case .emailAlreadyInUse:
-            login()
-            break
-        case .missingEmail:
-            self.authenticationStatus = .Error(message: "email_blank")
-                break
-        case .invalidEmail:
-            self.authenticationStatus = .Error(message: "email_bad")
-            break
-        case .weakPassword:
-            self.authenticationStatus = .Error(message: "password_weak")
-            break
-        default:
-            self.authenticationStatus = .Error(message: error.localizedDescription)
-            break
-        }
     }
 }
 

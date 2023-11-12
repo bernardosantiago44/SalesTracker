@@ -20,6 +20,7 @@
 		D1610EA42AF7494500C99235 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1610EA32AF7494500C99235 /* assets.xcassets */; };
 		D1A2CD762AF6BB3A0061BDAE /* SampleProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */; };
 		D1A2CD782AF6BBC20061BDAE /* ProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2CD772AF6BBC20061BDAE /* ProductsList.swift */; };
+		D1A352F22B013F8600A72AB5 /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A352F12B013F8600A72AB5 /* AuthenticationHandler.swift */; };
 		D1C414592B00773600D4AA26 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1C414582B00773600D4AA26 /* GoogleService-Info.plist */; };
 		D1C4145C2B00789500D4AA26 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D1C4145B2B00789500D4AA26 /* FirebaseAuth */; };
 		D1C4145E2B00789500D4AA26 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = D1C4145D2B00789500D4AA26 /* FirebaseFirestore */; };
@@ -57,6 +58,7 @@
 		D1610EA32AF7494500C99235 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = assets.xcassets; sourceTree = "<group>"; };
 		D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleProducts.swift; sourceTree = "<group>"; };
 		D1A2CD772AF6BBC20061BDAE /* ProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsList.swift; sourceTree = "<group>"; };
+		D1A352F12B013F8600A72AB5 /* AuthenticationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
 		D1C414582B00773600D4AA26 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1C414642B007B7200D4AA26 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupTextFieldStyle.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */,
 				D11A8D852AF4476E00FB4F02 /* SalesModel.swift */,
 				D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */,
+				D1A352F12B013F8600A72AB5 /* AuthenticationHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				D1A2CD762AF6BB3A0061BDAE /* SampleProducts.swift in Sources */,
 				D1C414652B007B7200D4AA26 /* LoginView.swift in Sources */,
 				D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */,
+				D1A352F22B013F8600A72AB5 /* AuthenticationHandler.swift in Sources */,
 				D1A2CD782AF6BBC20061BDAE /* ProductsList.swift in Sources */,
 				D1C414682B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift in Sources */,
 				D11A8D722AF425E500FB4F02 /* SalesTrackerApp.swift in Sources */,
