@@ -9,12 +9,14 @@
 // MARK: Useful Labels
 "done" = "Done";
 "add" = "Add";
+"close" = "Close";
 
 // MARK: - Authentication
 "email" = "Email";
 "password" = "Password";
 "login" = "Login";
 "signup" = "Sign Up";
+"error_while_creating_user" = "Sign up unsuccessful";
 
 // MARK: - Products Navigation & Information
 "products" = "Products";
