@@ -30,6 +30,7 @@
 		D1C414682B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */; };
 		D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */; };
 		D1CA6E7B2AF806C100D73C09 /* SalesTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA6E7A2AF806C100D73C09 /* SalesTrackerTests.swift */; };
+		D1FC646D2B058FF300A20757 /* AuthenticationFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FC646C2B058FF300A20757 /* AuthenticationFields.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionReponse.swift; sourceTree = "<group>"; };
 		D1CA6E782AF806C100D73C09 /* SalesTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalesTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1CA6E7A2AF806C100D73C09 /* SalesTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTrackerTests.swift; sourceTree = "<group>"; };
+		D1FC646C2B058FF300A20757 /* AuthenticationFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFields.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				D1C414642B007B7200D4AA26 /* LoginView.swift */,
+				D1FC646C2B058FF300A20757 /* AuthenticationFields.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */,
 				D13406542AF9CB8C00088132 /* RatingVisualizer.swift in Sources */,
 				D1A2CD762AF6BB3A0061BDAE /* SampleProducts.swift in Sources */,
+				D1FC646D2B058FF300A20757 /* AuthenticationFields.swift in Sources */,
 				D1C414652B007B7200D4AA26 /* LoginView.swift in Sources */,
 				D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */,
 				D1A352F22B013F8600A72AB5 /* AuthenticationHandler.swift in Sources */,
