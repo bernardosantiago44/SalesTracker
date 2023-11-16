@@ -9,6 +9,19 @@
 // MARK: Useful Labels
 "done" = "Listo";
 "add" = "Agregar";
+"close" = "Cerrar";
+
+// MARK: - Authentication
+"email" = "Correo electrónico";
+"password" = "Contraseña";
+"login" = "Iniciar sesión";
+"signup" = "Registrarse";
+"error_while_creating_user" = "Registro no exitoso";
+"email_blank" = "Por favor ingresa una dirección de correo.";
+"password_blank" = "Por favor ingresa una contraseña de mínimo 6 caracteres.";
+"email_bad" = "El correo ingresado no es válido: nombre@ejemplo.com";
+"wrong_password" = "La contraseña es incorrecta.";
+"password_weak" = "Esta contraseña parece ser fácil de adivinar. Por favor ingresa mínimo 6 caracteres.";
 
 // MARK: - Products Navigation & Information
 "products" = "Productos";

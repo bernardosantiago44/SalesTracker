@@ -12,3 +12,8 @@ enum ActionReponse {
     case InProgress
     case Unsuccessful
 }
+
+enum AuthenticationStatus {
+    case Successful
+    case Error(message: String)
+}
