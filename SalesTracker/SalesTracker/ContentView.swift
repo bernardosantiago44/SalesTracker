@@ -9,13 +9,18 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var sharedModel: SalesModel
+    @ObservedObject var appNavigation: AppNavigation
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $appNavigation.path) {
             LoginView()
+                .navigationDestination(for: AppPages.self) { page in
+                    ProductsList(salesModel: self.sharedModel)
+                }
         }
     }
 }
 
 #Preview {
-    ContentView(sharedModel: SalesModel())
+    ContentView(sharedModel: SalesModel(), appNavigation: AppNavigation())
 }
