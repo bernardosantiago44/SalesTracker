@@ -8,19 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var sharedModel: SalesModel
+    @ObservedObject var salesModel: SalesModel
     @ObservedObject var appNavigation: AppNavigation
     
     var body: some View {
-        NavigationStack(path: $appNavigation.path) {
-            LoginView()
-                .navigationDestination(for: AppPages.self) { page in
-                    ProductsList(salesModel: self.sharedModel)
+        TabView(selection: self.$appNavigation.selectedTab) {
+            ProductsTab(salesModel: self.salesModel, appNavigation: self.appNavigation)
+                .tabItem {
+                    Label("products", systemImage: "rectangle.grid.2x2")
                 }
+                .tag(AppPages.productsList)
+            
+            AccountTab(appNavigation: self.appNavigation)
+                .tabItem {
+                   Label("account", systemImage: "person.circle")
+                }
+                .tag(AppPages.account)
         }
+        
+        // If no user is logged in
+        // present the modal to authenticate
+        //
+        .fullScreenCover(isPresented: self.$appNavigation.askForLogin, content: {
+            LoginTab(appNavigation: self.appNavigation)
+        })
     }
 }
 
 #Preview {
-    ContentView(sharedModel: SalesModel(), appNavigation: AppNavigation())
+    ContentView(salesModel: SalesModel(), appNavigation: AppNavigation())
 }

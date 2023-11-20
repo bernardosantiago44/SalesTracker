@@ -11,8 +11,10 @@ import Firebase
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
-    @ObservedObject var authHandler = AuthenticationHandler()
+    @StateObject var authHandler = AuthenticationHandler()
+    @ObservedObject var appNavigation: AppNavigation
     @FocusState var focusField: AuthField?
+    @Environment(\.dismiss) private var dismiss
     
     var emailValidated: Bool {
         let regex = try! NSRegularExpression(pattern: "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
@@ -69,6 +71,10 @@ struct LoginView: View {
     var signupButton: some View {
         Button {
             authHandler.registerUser(email: self.email, password: self.password)
+            if let response = authHandler.authenticationStatus, response == .Successful {
+                self.appNavigation.askForLogin = false
+                dismiss()
+            }
         } label: {
             Text("signup")
         }
@@ -77,7 +83,10 @@ struct LoginView: View {
     
     var loginButton: some View {
         Button {
-            authHandler.login(email: self.email, password: self.password)
+            let response = authHandler.login(email: self.email, password: self.password)
+            if response == .Successful {
+                self.appNavigation.askForLogin = false
+            }
         } label: {
             Text("login")
         }
@@ -120,6 +129,6 @@ struct LoginView: View {
 
 #Preview {
     NavigationStack {
-        LoginView()
+        LoginView(appNavigation: AppNavigation())
     }
 }
