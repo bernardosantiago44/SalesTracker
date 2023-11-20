@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ProductsList: View {
-    @ObservedObject var sharedModel: SalesModel
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @State private var showNewProductSheet = false
+    @State private var presentedProducts = [Product]()
+    @ObservedObject var salesModel: SalesModel
+    
     var columns: [GridItem] {
         if dynamicTypeSize > .xLarge {
             return [.init(.flexible())]
@@ -17,20 +20,37 @@ struct ProductsList: View {
         return .init(repeating: .init(.flexible()), count: 2)
     }
     var products: [String : [Product]] {
-        Dictionary(grouping: self.sharedModel.sampleProducts, by: \.category)
+        Dictionary(grouping: self.salesModel.sampleProducts, by: \.category)
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: self.$presentedProducts) {
             ScrollView {
+                // TODO: Separate products into categories.
                 LazyVGrid(columns: self.columns) {
-                    ForEach(sharedModel.sampleProducts) { product in
-                        ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
+                    ForEach(salesModel.sampleProducts) { product in
+                        NavigationLink(value: product) {
+                            ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
+                                .tint(.primary)
+                        }
                     }
                 }
                 .padding(.horizontal)
             }
+            .navigationTitle("products")
+            .toolbar(content: {
+                Button("createNewProduct", systemImage: "plus.circle.fill") {
+                    self.showNewProductSheet.toggle()
+                }
+            })
+            .navigationDestination(for: Product.self) { product in
+                ProductDetailView(product: product)
+            }
         }
+        .sheet(isPresented: self.$showNewProductSheet, content: {
+            NewProductView(salesModel: self.salesModel)
+            
+        })
     }
 }
 
@@ -43,6 +63,10 @@ struct ProductCard: View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
                 .foregroundStyle(product.color.opacity(0.15))
+            
+            // Dynamic type sizes too large shoud
+            // display data in a vertical layout.
+            //
             if self.dynamicTypeSize >= .large {
                 VStack {
                     Text(product.name)
@@ -52,7 +76,7 @@ struct ProductCard: View {
                         .accessibilityLabel(product.name)
                     Text(product.getPrice(), format: .currency(code: self.currencyCode))
                 }
-                .padding(.vertical)
+                .padding(.vertical, 12)
             } else {
                 HStack {
                     Text(product.name)
@@ -63,12 +87,12 @@ struct ProductCard: View {
                     Spacer()
                     Text(product.getPrice(), format: .currency(code: self.currencyCode))
                 }
-                .padding()
+                .padding(12)
             }
         }
     }
 }
 
 #Preview {
-    ProductsList(sharedModel: SalesModel())
+    ProductsList(salesModel: SalesModel())
 }

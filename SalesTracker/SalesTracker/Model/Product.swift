@@ -8,10 +8,11 @@
 import Foundation
 import SwiftUI
 
-// Creating a class to save data through
-// Swift Data
-//
-class Product: Identifiable {
+struct Product: Identifiable, Hashable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: String
     
     var name: String
@@ -19,6 +20,8 @@ class Product: Identifiable {
     var category: String
     
     var color: Color
+    
+    var rating: Float
     
     private var price: Float
     
@@ -28,24 +31,27 @@ class Product: Identifiable {
         self.category = "default"
         self.color = .green
         self.price = 1
+        self.rating = 5
     }
     
-    init(name: String, category: String, color: Color, price: Float) {
+    init(name: String, category: String, color: Color, price: Float, rating: Float) {
         assert(!name.isEmpty, "Name can't be empty")
         assert(price > 0, "Price must be > 0.")
+        assert(rating >= 0 && rating <= 5, "Rating must be between 0 and 5.")
         
         self.id = UUID().uuidString
         self.name = name
         self.category = category
         self.color = color
         self.price = price
+        self.rating = rating
     }
     
     /// Tells whether the product's properties are all valid values.
     /// - Returns: Bool
     /// 
     func isValid() -> Bool {
-        return !self.id.isEmpty && !self.name.isEmpty && self.price > 0
+        return !self.id.isEmpty && !self.name.isEmpty && self.price > 0 && self.rating >= 0 && self.rating <= 5
     }
     
     func getPrice() -> Float {
@@ -63,7 +69,7 @@ class Product: Identifiable {
     /// Updates the current price of a Product.
     /// - Parameter newPrice: Float > 0
     /// - Returns: The last price of the product.
-    func setPrice(_ newPrice: Float) -> Float {
+    mutating func setPrice(_ newPrice: Float) -> Float {
         let oldPrice = self.getPrice()
         
         guard newPrice > 0 else {
