@@ -22,6 +22,13 @@
 "email_bad" = "The entered email address is not valid: name@example.com";
 "wrong_password" = "The password is incorrect.";
 "password_weak" = "Your password seems to be easy to guess. Please try with 6+ characters.";
+"user.notFound" = "An error occured while logging you in.";
+"signout" = "Sign out";
+"signout_question" = "Sign out?";
+
+// MARK: - Account Manager
+"account" = "Account";
+"danger_zone" = "Danger zone";
 
 // MARK: - Products Navigation & Information
 "products" = "Products";

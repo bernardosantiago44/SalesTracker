@@ -7,22 +7,37 @@
 
 import Foundation
 import SwiftUI
+import FirebaseAuth
 
 /// Used to keep track of App's navigation.
 /// 
 final class AppNavigation: ObservableObject {
-    @Published var path = NavigationPath()
+    @Published var loginPath: NavigationPath
+    @Published var productsNavigationPath: NavigationPath
+    @Published var askForLogin: Bool
+    @Published var selectedTab: AppPages
     
-    func goToMainView() {
-        self.path = NavigationPath([AppPages.productsList])
+    init() {
+        self.loginPath = NavigationPath()
+        self.productsNavigationPath = NavigationPath()
+        selectedTab = .productsList
+        if Auth.auth().currentUser != nil {
+            self.askForLogin = false
+        } else {
+            self.askForLogin = true
+        }
     }
     
-    func goToAuthView() {
-        self.path = NavigationPath()
+    func goToMainView() {
+        self.productsNavigationPath = NavigationPath([AppPages.productsList])
+    }
+    
+    func goToMainTab() {
+        self.selectedTab = .productsList
     }
 }
 
 enum AppPages: String, Hashable {
-    case authentication = "authentication"
     case productsList = "productsList"
+    case account = "account"
 }

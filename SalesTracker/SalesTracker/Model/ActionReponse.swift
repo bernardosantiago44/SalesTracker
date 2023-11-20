@@ -7,13 +7,13 @@
 
 import Foundation
 
-enum ActionReponse {
+enum ActionReponse: Equatable {
     case Successful
     case InProgress
     case Unsuccessful
 }
 
-enum AuthenticationStatus {
+enum AuthenticationStatus: Equatable {
     case Successful
     case Error(message: String)
 }

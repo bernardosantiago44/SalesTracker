@@ -24,7 +24,7 @@ struct SalesTrackerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView(sharedModel: self.salesModel, appNavigation: self.appNavigation)
+            ContentView(salesModel: self.salesModel, appNavigation: self.appNavigation)
         }
     }
 }

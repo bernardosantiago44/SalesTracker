@@ -14,39 +14,36 @@ struct ProductsList: View {
     @ObservedObject var salesModel: SalesModel
     
     var columns: [GridItem] {
+        // If font size is too large,
+        // display items vertically.
+        // Otherwise, display a 2 x n grid.
+        //
         if dynamicTypeSize > .xLarge {
             return [.init(.flexible())]
         }
         return .init(repeating: .init(.flexible()), count: 2)
     }
-    var products: [String : [Product]] {
-        Dictionary(grouping: self.salesModel.sampleProducts, by: \.category)
-    }
     
     var body: some View {
-        NavigationStack(path: self.$presentedProducts) {
-            ScrollView {
-                // TODO: Separate products into categories.
-                LazyVGrid(columns: self.columns) {
-                    ForEach(salesModel.sampleProducts) { product in
-                        NavigationLink(value: product) {
-                            ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
-                                .tint(.primary)
-                        }
+        ScrollView {
+            // TODO: Separate products into categories.
+            LazyVGrid(columns: self.columns) {
+                ForEach(salesModel.sampleProducts) { product in
+                    NavigationLink(value: product) {
+                        ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
+                            .tint(.primary)
                     }
                 }
-                .padding(.horizontal)
             }
-            .navigationTitle("products")
-            .toolbar(content: {
+            .padding(.horizontal)
+        }
+        .toolbar(content: {
+            ToolbarItem(placement: .primaryAction) {
                 Button("createNewProduct", systemImage: "plus.circle.fill") {
                     self.showNewProductSheet.toggle()
                 }
-            })
-            .navigationDestination(for: Product.self) { product in
-                ProductDetailView(product: product)
             }
-        }
+        })
         .sheet(isPresented: self.$showNewProductSheet, content: {
             NewProductView(salesModel: self.salesModel)
             
@@ -94,5 +91,5 @@ struct ProductCard: View {
 }
 
 #Preview {
-    ProductsList(salesModel: SalesModel())
+    ProductsTab(salesModel: SalesModel(), appNavigation: AppNavigation())
 }
