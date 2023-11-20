@@ -19,7 +19,7 @@ final class SalesTrackerTests: XCTestCase {
     }
 
     func testProductPriceRejectsNegativeValues() throws {
-        let MockProduct = Product(name: "Test", category: "testing", color: .black, price: 10)
+        var MockProduct = Product(name: "Test", category: "testing", color: .black, price: 10)
         
         XCTAssertTrue(MockProduct.isValid())
         XCTAssertEqual(MockProduct.getPrice(), 10)

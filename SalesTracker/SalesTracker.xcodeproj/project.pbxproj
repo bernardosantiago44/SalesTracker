@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D10EE5362B0B1CB600927944 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10EE5352B0B1CB600927944 /* EmailValidator.swift */; };
+		D10EE5382B0B1D6500927944 /* EmailValidationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10EE5372B0B1D6500927944 /* EmailValidationTests.swift */; };
 		D11A8D722AF425E500FB4F02 /* SalesTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D712AF425E500FB4F02 /* SalesTrackerApp.swift */; };
 		D11A8D742AF425E500FB4F02 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D732AF425E500FB4F02 /* ContentView.swift */; };
 		D11A8D792AF425E700FB4F02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11A8D782AF425E700FB4F02 /* Preview Assets.xcassets */; };
@@ -32,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D10EE5352B0B1CB600927944 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
+		D10EE5372B0B1D6500927944 /* EmailValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationTests.swift; sourceTree = "<group>"; };
 		D11A8D6E2AF425E500FB4F02 /* SalesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D11A8D712AF425E500FB4F02 /* SalesTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesTrackerApp.swift; sourceTree = "<group>"; };
 		D11A8D732AF425E500FB4F02 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				D1A2CD752AF6BB3A0061BDAE /* SampleProducts.swift */,
 				D11A8D852AF4476E00FB4F02 /* SalesModel.swift */,
 				D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */,
+				D10EE5352B0B1CB600927944 /* EmailValidator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -138,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				D1CA6E7A2AF806C100D73C09 /* SalesTrackerTests.swift */,
+				D10EE5372B0B1D6500927944 /* EmailValidationTests.swift */,
 			);
 			path = SalesTrackerTests;
 			sourceTree = "<group>";
@@ -249,6 +255,7 @@
 				D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */,
 				D1A2CD782AF6BBC20061BDAE /* ProductsList.swift in Sources */,
 				D11A8D722AF425E500FB4F02 /* SalesTrackerApp.swift in Sources */,
+				D10EE5362B0B1CB600927944 /* EmailValidator.swift in Sources */,
 				D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */,
 				D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */,
 			);
@@ -259,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1CA6E7B2AF806C100D73C09 /* SalesTrackerTests.swift in Sources */,
+				D10EE5382B0B1D6500927944 /* EmailValidationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
