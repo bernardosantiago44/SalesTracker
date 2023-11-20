@@ -17,9 +17,7 @@ struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
     
     var emailValidated: Bool {
-        let regex = try! NSRegularExpression(pattern: "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-        let range = NSRange(location: 0, length: email.utf16.count)
-        return regex.firstMatch(in: email, range: range) != nil
+        return EmailValidator.isValidEmail(email)
     }
     
     var passwordValidated: Bool {
