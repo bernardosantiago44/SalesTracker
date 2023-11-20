@@ -19,19 +19,24 @@ final class AuthenticationHandler: ObservableObject {
             if let error {
                 self.errorOccured = true
                 self.authenticationStatus = self.handleError(error, email: email, password: password)
+                return
             }
+            self.authenticationStatus = .Successful
         }
     }
     
-    func login(email: String, password: String) {
+    func login(email: String, password: String) -> AuthenticationStatus {
         self.errorOccured = false
+        var status: AuthenticationStatus = .Successful
         
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if let error {
                 self.errorOccured = true
-                self.authenticationStatus = self.handleError(error, email: email, password: password)
+                self.authenticationStatus = .Error(message: error.localizedDescription)
+                status = self.handleError(error, email: email, password: password)
             }
         }
+        return status
     }
     
     private func handleError(_ error: Error, email: String, password: String) -> AuthenticationStatus {
@@ -51,8 +56,7 @@ final class AuthenticationHandler: ObservableObject {
         case .invalidEmail:
             return .Error(message: "email_bad")
         case .emailAlreadyInUse:
-            login(email: email, password: password)
-            return .Successful
+            return login(email: email, password: password)
         case .wrongPassword:
             return .Error(message: "wrong_password")
         case .weakPassword:
