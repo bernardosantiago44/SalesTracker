@@ -2,11 +2,10 @@
 //  SalesTrackerTests.swift
 //  SalesTrackerTests
 //
-//  Created by Bernardo Santiago Marin on 05/11/23.
+//  Created by Bernardo Santiago Marin on 07/02/24.
 //
 
 import XCTest
-@testable import SalesTracker
 
 final class SalesTrackerTests: XCTestCase {
 
@@ -17,19 +16,55 @@ final class SalesTrackerTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testProductPriceRejectsNegativeValues() throws {
-        var MockProduct = Product(name: "Test", category: "testing", color: .black, price: 10, rating: 3.4)
-        
-        XCTAssertTrue(MockProduct.isValid())
-        XCTAssertEqual(MockProduct.getPrice(), 10)
-        XCTAssertEqual(MockProduct.setPrice(-5), 10)
-        XCTAssertNotEqual(MockProduct.getPrice(), -5)
-        XCTAssertEqual(MockProduct.setPrice(50), 10)
-        XCTAssertEqual(MockProduct.getPrice(), 50)
-        
-        
-    }
+    
+    func testCorrectlyFormattedEmail() throws {
+            let correctEmails = [
+                "john.doe@example.com",
+                "alice.smith@emailprovider.net",
+                "mike_jones123@email.org",
+                "sarah.miller@emailservice.com",
+                "info@companywebsite.com",
+                "contact_us@businessco.org",
+                "sales.department@emailcorp.net",
+                "support.team@techcompany.com",
+                "jane_doe@emailprovider.org",
+                "customer.service@ecommercestore.com",
+                "marketing@digitalagency.net",
+                "admin@blogwebsite.com",
+                "webmaster@techblog.org",
+                "hr.department@companyinc.com",
+                "feedback@usersupport.net"
+            ]
+            
+            for email in correctEmails {
+                XCTAssertTrue(EmailValidator.isValidEmail(email), "\(email) should be correct.")
+            }
+        }
+    
+    func testBadlyFormattedEmails() throws {
+            let badlyFormattedEmails = [
+                "john.doe@example",
+                "alice.smith@.net",
+                "mike_jones123@email",
+                "sarah.miller@.com",
+                "info@companywebsite",
+                "contact_us@businessco.",
+                "sales.department@.net",
+                "support.team@techcompany>com",
+                "jane_doe@emailprovider.",
+                "customer.service@ecommercestore",
+                "marketing@123",
+                "admin@blogwebsite;co",
+                "webmaster@techblog",
+                "hr.department@companyinc",
+                "feedback@usersupport."
+            ]
+            
+            for email in badlyFormattedEmails {
+                XCTAssertFalse(EmailValidator.isValidEmail(email), "\(email) should not be valid.")
+            }
+        }
+    
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.

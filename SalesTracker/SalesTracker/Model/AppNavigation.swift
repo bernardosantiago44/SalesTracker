@@ -11,6 +11,7 @@ import FirebaseAuth
 
 /// Used to keep track of App's navigation.
 /// 
+@MainActor
 final class AppNavigation: ObservableObject {
     @Published var loginPath: NavigationPath
     @Published var productsNavigationPath: NavigationPath
@@ -29,7 +30,7 @@ final class AppNavigation: ObservableObject {
     }
     
     func goToMainView() {
-        self.productsNavigationPath = NavigationPath([AppPages.productsList])
+        self.productsNavigationPath = NavigationPath()
     }
     
     func goToMainTab() {
@@ -40,4 +41,5 @@ final class AppNavigation: ObservableObject {
 enum AppPages: String, Hashable {
     case productsList = "productsList"
     case account = "account"
+    case trends = "chart.line.uptrend.xyaxis"
 }

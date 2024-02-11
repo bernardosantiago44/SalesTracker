@@ -9,15 +9,16 @@ import SwiftUI
 
 struct LoginTab: View {
     @ObservedObject var appNavigation: AppNavigation
+    @ObservedObject var salesModel: ProductsModel
     
     var body: some View {
         NavigationStack(path: self.$appNavigation.loginPath) {
-            LoginView(appNavigation: self.appNavigation)
+            LoginView(appNavigation: self.appNavigation, salesModel: salesModel)
                 .navigationTitle("login")
         }
     }
 }
 
 #Preview {
-    LoginTab(appNavigation: AppNavigation())
+    LoginTab(appNavigation: AppNavigation(), salesModel: ProductsModel())
 }

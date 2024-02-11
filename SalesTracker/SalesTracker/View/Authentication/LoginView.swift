@@ -13,6 +13,7 @@ struct LoginView: View {
     @State private var password = ""
     @StateObject var authHandler = AuthenticationHandler()
     @ObservedObject var appNavigation: AppNavigation
+    @ObservedObject var salesModel: ProductsModel
     @FocusState var focusField: AuthField?
     @Environment(\.dismiss) private var dismiss
     
@@ -71,7 +72,10 @@ struct LoginView: View {
             authHandler.registerUser(email: self.email, password: self.password)
             if let response = authHandler.authenticationStatus, response == .Successful {
                 self.appNavigation.askForLogin = false
-                dismiss()
+                Task {
+                    await self.salesModel.fetchProducts()
+                    dismiss()
+                }
             }
         } label: {
             Text("signup")
@@ -84,6 +88,9 @@ struct LoginView: View {
             let response = authHandler.login(email: self.email, password: self.password)
             if response == .Successful {
                 self.appNavigation.askForLogin = false
+                Task {
+                    await self.salesModel.fetchProducts()
+                }
             }
         } label: {
             Text("login")
@@ -127,6 +134,6 @@ struct LoginView: View {
 
 #Preview {
     NavigationStack {
-        LoginView(appNavigation: AppNavigation())
+        LoginView(appNavigation: AppNavigation(), salesModel: ProductsModel())
     }
 }

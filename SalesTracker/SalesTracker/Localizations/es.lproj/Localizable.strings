@@ -10,6 +10,10 @@
 "done" = "Listo";
 "add" = "Agregar";
 "close" = "Cerrar";
+"cancel" = "Cancelar";
+"reload" = "Actualizar";
+"dismiss" = "Cerrar";
+"error" = "Oops";
 
 // MARK: - Authentication
 "email" = "Correo electrónico";
@@ -35,3 +39,24 @@
 "productname" = "Nombre";
 "productprice" = "Precio";
 "createNewProduct" = "Crear nuevo";
+"no_products" = "Sin productos guardados";
+"add_products_information" = "Puedes empezar presionando el + en la parte superior derecha de la pantalla.";
+"active_discounts" = "Descuentos";
+"no_discounts" = "Sin descuentos";
+"sales_today" = "Ventas de hoy";
+"category" = "Categoría";
+"add_category" = "Nueva categoría";
+"delete_product" = "Eliminar producto";
+"delete_product_confirmation" = "¿Realmente deseas eliminar este producto?";
+"delete_product_action_warning" = "Esto no se puede deshacer.";
+"inventory_followup" = "Seguimiento de inventario";
+"inventory" = "Inventario";
+"current_inventory" = "Inventario actual";
+"low_inventory_notifications" = "Notificación de inventario bajo";
+"no_notifications" = "Desactivado";
+"barcode_description" = "Identifica fácilmente tus productos. Tendrás que autorizar a SalesTracker el acceso a la cámara.";
+
+// MARK: - Trends & Sales
+"monthly_sales" = "Ventas mensuales";
+"no_data" = "Sin datos este periodo";
+"add_records_description" = "Empieza registrando ventas.";
