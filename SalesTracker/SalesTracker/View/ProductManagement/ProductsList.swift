@@ -14,7 +14,6 @@ struct ProductsList: View {
     @State private var showNewProductSheet = false
     @State private var presentedProducts = [Product]()
     @State private var filterCategorySelection: ProductCategory?
-//    @State private var fetchingItems:
     
     var columns: [GridItem] {
         // If font size is too large,
@@ -64,8 +63,6 @@ struct ProductsList: View {
         }
         .overlay {
             if self.salesModel.Products.isEmpty {
-//                ContentUnavailableView("no_products", systemImage: "square.slash.fill", description:
-//                                        Text("add_products_information"))
                 ContentUnavailableView {
                     Label("no_products", systemImage: "square.slash.fill")
                 } description: {

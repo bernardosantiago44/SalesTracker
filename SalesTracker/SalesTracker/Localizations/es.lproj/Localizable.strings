@@ -60,3 +60,5 @@
 "monthly_sales" = "Ventas mensuales";
 "no_data" = "Sin datos este periodo";
 "add_records_description" = "Empieza registrando ventas.";
+"product_trends" = "Por producto";
+"total_sales" = "Unidades vendidas";

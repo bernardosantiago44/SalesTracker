@@ -20,15 +20,15 @@ struct ContentView: View {
                 }
                 .tag(AppPages.productsList)
             
+            MonthlySalesTab(salesModel: self.salesModel)
+                .tabItem { Label("sales", systemImage: "chart.line.uptrend.xyaxis") }
+                .tag(AppPages.trends)
+            
             AccountTab(appNavigation: self.appNavigation)
                 .tabItem {
                    Label("account", systemImage: "person.circle")
                 }
                 .tag(AppPages.account)
-            
-            MonthlySales(salesModel: self.salesModel)
-                .tabItem { Label("sales", systemImage: "chart.line.uptrend.xyaxis") }
-                .tag(AppPages.trends)
         }
         
         // If no user is logged in

@@ -11,61 +11,83 @@ import Charts
 struct MonthlySales: View {
     @ObservedObject var salesModel: SalesModel
     @State private var inProgress = false
+    @State private var showAlert = false
+    @State private var alertMessage = ""
     
     var body: some View {
         ScrollView {
-            Text("Total Sales: \(salesModel.sales.reduce(0, { $0 + Int($1.count) }))")
-                .font(.title)
-                .fontDesign(.rounded)
-                .fontWeight(.medium)
-            GroupBox {
-                if salesModel.sales.isEmpty {
-                    ContentUnavailableView(label: {
-                        Label("no_data", systemImage: "questionmark.diamond.fill")
-                    }, description: {
-                        Text("add_records_description")
-                    })
-                } else {
-                    Chart {
-                        ForEach(salesModel.sales.prefix(5)) { sale in
-                            BarMark(
-                                x: .value("Product type", sale.product),
-                                y: .value("Product sales", sale.count)
-                            )
-                            .annotation {
-                                Text("\(sale.count)")
+            if !salesModel.sales.isEmpty {
+                monthlyProductSales
+            } 
+            HStack {Spacer()}
+        }
+        .overlay {
+            if salesModel.sales.isEmpty {
+                ContentUnavailableView {
+                    Label("no_data", systemImage: "chart.bar")
+                } description: {
+                    Text("add_records_description")
+                } actions: {
+                    Button {
+                        Task {
+                            do {
+                                self.inProgress = true
+                                salesModel.sales = try await salesModel.fetchMontlySales(for: Date.now)
+                            } catch {
+                                self.showAlert = true
+                                self.alertMessage = error.localizedDescription
                             }
+                            self.inProgress = false
+                        }
+                    } label: {
+                        if self.inProgress {
+                            ProgressView()
+                        } else {
+                            Text("refresh")
                         }
                     }
                 }
             }
-            .padding()
-            .frame(height: 250)
+        }
+        .alert("error", isPresented: $showAlert) {
             
-            Button {
-                Task {
-                    do {
-                        self.inProgress = true
-                        salesModel.sales = try await salesModel.fetchMontlySales(for: Date.now)
-                        self.inProgress = false
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
-            } label: {
-                if self.inProgress {
-                    ProgressView()
-                } else {
-                    Text("refresh")
-                }
+        } message: {
+            Text(alertMessage)
+        }
+
+    }
+    
+    var ProductTrendSalesTitle: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("product_trends")
+                    .font(.headline)
+                    .multilineTextAlignment(.leading)
+                Text("\(salesModel.totalSales) ")
+                    .font(.title3)
+                + Text("total_sales")
+            }
+            Spacer()
+        }
+    }
+    
+    var monthlyProductSales: some View {
+        GroupBox {
+            ProductTrendSalesTitle
+            Chart(salesModel.sales) { sale in
+                BarMark(
+                    x: .value("Product sales", sale.count),
+                    y: .value("Product type", sale.product + ": \(sale.count)")
+                )
+                
             }
         }
-        .navigationTitle("monthly_sales")
+        .clipShape(RoundedRectangle(cornerRadius: 15))
+        .frame(height: 300)
+        .padding(.horizontal)
     }
 }
 
 #Preview {
-    NavigationStack {
-        MonthlySales(salesModel: SalesModel())
-    }
+    MonthlySalesTab(salesModel: SalesModel())
 }

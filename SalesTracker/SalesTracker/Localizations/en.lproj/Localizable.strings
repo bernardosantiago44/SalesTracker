@@ -60,3 +60,5 @@
 "monthly_sales" = "Monthly sales";
 "no_data" = "No data this period";
 "add_records_description" = "Start by adding sales records.";
+"product_trends" = "Product trends";
+"total_sales" = "Units sold";
