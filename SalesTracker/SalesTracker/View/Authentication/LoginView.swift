@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAuth
 
 struct LoginView: View {
     @State private var authViewModel = AuthenticationViewModel()
@@ -68,14 +69,14 @@ struct LoginView: View {
                     Task {
                         await authViewModel.registerUser()
                         
-                        if authViewModel.authenticationStatus == .Successful {
+                        if authViewModel.authenticationStatus == .authenticated {
                             await salesModel.fetchProducts()
                             appNavigation.askForLogin = false
                         }
                     }
                     
                     #warning("Redo this logic using an authentication state listener")
-                    //            if let response = authHandler.authenticationStatus, response == .Successful {
+                    //            if let response = authHandler.authenticationStatus, response == .authenticated {
                     //                self.appNavigation.askForLogin = false
                     //                Task {
                     //                    await self.salesModel.fetchProducts()
@@ -98,7 +99,7 @@ struct LoginView: View {
                 Button {
                     Task {
                         await authViewModel.loginWithEmailPassword()
-                        if authViewModel.authenticationStatus == .Successful {
+                        if authViewModel.authenticationStatus == .authenticated {
                             // Success
                             print("Login successful")
                             appNavigation.askForLogin = false
@@ -147,6 +148,10 @@ struct LoginView: View {
             Image(systemName: isValid ? "checkmark.circle.fill" : "xmark.circle.fill")
                 .foregroundStyle(isValid ? .green : .red)
         }
+    }
+    
+    private func wasAuthSuccessful() -> Bool {
+        return authViewModel.authenticationStatus == .authenticated && Auth.auth().currentUser != nil
     }
 }
 

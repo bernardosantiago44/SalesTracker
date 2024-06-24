@@ -24,6 +24,16 @@ final class AuthenticationViewModel {
         return passwordField.count > 6
     }
     
+    @ObservationIgnored
+    private var authStateHandle: AuthStateDidChangeListenerHandle?
+    
+    init() {
+        registerAuthStateHandler()
+    }
+    
+    /// Create a user with the provided email and password fields.
+    /// Fails is the current email is already registered.
+    ///
     func registerUser() async {
         authenticationStatus = .authenticating
         
@@ -37,9 +47,11 @@ final class AuthenticationViewModel {
             authenticationStatus = .Error(message: error.localizedDescription)
             return
         }
-        self.authenticationStatus = .Successful
+        self.authenticationStatus = .authenticated
     }
     
+    /// Signs in with the provided email and password fields.
+    ///
     func loginWithEmailPassword() async {
         authenticationStatus = .authenticating
         
@@ -51,6 +63,13 @@ final class AuthenticationViewModel {
             return
         }
         
-        authenticationStatus = .Successful
+        authenticationStatus = .authenticated
+    }
+    
+    private func registerAuthStateHandler() {
+        guard authStateHandle == nil else { return }
+        authStateHandle = Auth.auth().addStateDidChangeListener({ auth, user in
+            self.authenticationStatus = user == nil ? .notAuthenticated : .authenticated
+        })
     }
 }
