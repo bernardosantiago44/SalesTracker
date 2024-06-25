@@ -10,10 +10,8 @@ import Firebase
 import FirebaseAuth
 
 struct LoginView: View {
-    @State private var authViewModel = AuthenticationViewModel()
-    @State private var authHandler = AuthenticationHandler()
+    @Bindable var authViewModel: AuthenticationViewModel
     @ObservedObject var appNavigation: AppNavigation
-    @ObservedObject var salesModel: ProductsModel
     
     @FocusState var focusField: AuthField?
     @Environment(\.dismiss) private var dismiss
@@ -68,21 +66,7 @@ struct LoginView: View {
                 Button {
                     Task {
                         await authViewModel.registerUser()
-                        
-                        if authViewModel.authenticationStatus == .authenticated {
-                            await salesModel.fetchProducts()
-                            appNavigation.askForLogin = false
-                        }
                     }
-                    
-                    #warning("Redo this logic using an authentication state listener")
-                    //            if let response = authHandler.authenticationStatus, response == .authenticated {
-                    //                self.appNavigation.askForLogin = false
-                    //                Task {
-                    //                    await self.salesModel.fetchProducts()
-                    //                    dismiss()
-                    //                }
-                    //            }
                 } label: {
                     Text("signup")
                 }
@@ -99,11 +83,6 @@ struct LoginView: View {
                 Button {
                     Task {
                         await authViewModel.loginWithEmailPassword()
-                        if authViewModel.authenticationStatus == .authenticated {
-                            // Success
-                            print("Login successful")
-                            appNavigation.askForLogin = false
-                        }
                     }
                 } label: {
                     Text("login")
@@ -149,14 +128,10 @@ struct LoginView: View {
                 .foregroundStyle(isValid ? .green : .red)
         }
     }
-    
-    private func wasAuthSuccessful() -> Bool {
-        return authViewModel.authenticationStatus == .authenticated && Auth.auth().currentUser != nil
-    }
 }
 
 #Preview {
     NavigationStack {
-        LoginView(appNavigation: AppNavigation(), salesModel: ProductsModel())
+        ContentView(productsModel: ProductsModel(), appNavigation: AppNavigation(), salesModel: SalesModel())
     }
 }

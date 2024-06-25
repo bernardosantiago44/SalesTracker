@@ -6,42 +6,37 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct ContentView: View {
     @ObservedObject var productsModel: ProductsModel
     @ObservedObject var appNavigation: AppNavigation
     @ObservedObject var salesModel: SalesModel
+    @State private var authViewModel = AuthenticationViewModel()
     
     var body: some View {
-        TabView(selection: self.$appNavigation.selectedTab) {
-            ProductsTab(salesModel: self.productsModel, appNavigation: self.appNavigation)
-                .tabItem {
-                    Label("products", systemImage: "rectangle.grid.2x2")
-                }
-                .tag(AppPages.productsList)
-            
-            MonthlySalesTab(salesModel: self.salesModel)
-                .tabItem { Label("sales", systemImage: "chart.line.uptrend.xyaxis") }
-                .tag(AppPages.trends)
-            
-            AccountTab(appNavigation: self.appNavigation)
-                .tabItem {
-                   Label("account", systemImage: "person.circle")
-                }
-                .tag(AppPages.account)
-        }
-        
-        // If no user is logged in
-        // present the modal to authenticate
-        //
-        .fullScreenCover(isPresented: self.$appNavigation.askForLogin, onDismiss: {
-            Task {
-                await productsModel.fetchProducts()
-                await productsModel.fetchCategories()
+        if !authViewModel.isUserAuthenticated() {
+            // Show authentication view
+            LoginTab(appNavigation: self.appNavigation, authViewModel: self.authViewModel)
+        } else {
+            TabView(selection: self.$appNavigation.selectedTab) {
+                ProductsTab(salesModel: self.productsModel, appNavigation: self.appNavigation)
+                    .tabItem {
+                        Label("products", systemImage: "rectangle.grid.2x2")
+                    }
+                    .tag(AppPages.productsList)
+                
+                MonthlySalesTab(salesModel: self.salesModel)
+                    .tabItem { Label("sales", systemImage: "chart.line.uptrend.xyaxis") }
+                    .tag(AppPages.trends)
+                
+                AccountTab(appNavigation: self.appNavigation, authViewModel: self.authViewModel)
+                    .tabItem {
+                        Label("account", systemImage: "person.circle")
+                    }
+                    .tag(AppPages.account)
             }
-        }, content: {
-            LoginTab(appNavigation: self.appNavigation, salesModel: self.productsModel)
-        })
+        }
     }
 }
 

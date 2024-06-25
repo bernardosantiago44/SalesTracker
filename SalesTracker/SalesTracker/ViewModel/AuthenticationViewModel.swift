@@ -23,12 +23,20 @@ final class AuthenticationViewModel {
     var isPasswordValid: Bool {
         return passwordField.count > 6
     }
+    /// The user object associated with the authenticated account.
+    var user: User?
     
     @ObservationIgnored
     private var authStateHandle: AuthStateDidChangeListenerHandle?
     
     init() {
         registerAuthStateHandler()
+    }
+    
+    deinit {
+        if self.authStateHandle != nil {
+            Auth.auth().removeStateDidChangeListener(authStateHandle!)
+        }
     }
     
     /// Create a user with the provided email and password fields.
@@ -66,10 +74,25 @@ final class AuthenticationViewModel {
         authenticationStatus = .authenticated
     }
     
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            self.showErrorAlert = true
+            self.authenticationStatus = .Error(message: error.localizedDescription)
+        }
+        self.authenticationStatus = Auth.auth().currentUser == nil ? .notAuthenticated : .authenticated
+    }
+    
     private func registerAuthStateHandler() {
         guard authStateHandle == nil else { return }
         authStateHandle = Auth.auth().addStateDidChangeListener({ auth, user in
+            self.user = user
             self.authenticationStatus = user == nil ? .notAuthenticated : .authenticated
         })
+    }
+    
+    public func isUserAuthenticated() -> Bool {
+        return self.user != nil && self.authenticationStatus == .authenticated
     }
 }

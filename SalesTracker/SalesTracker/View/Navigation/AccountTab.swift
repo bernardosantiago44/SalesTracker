@@ -9,15 +9,13 @@ import SwiftUI
 
 struct AccountTab: View {
     @ObservedObject var appNavigation: AppNavigation
+    @Bindable var authViewModel: AuthenticationViewModel
     
     var body: some View {
         NavigationStack {
-            AccountManager(appNavigation: self.appNavigation)
+            AccountManager(appNavigation: self.appNavigation, authViewModel: self.authViewModel)
                 .navigationTitle("account")
         }
     }
 }
 
-#Preview {
-    AccountTab(appNavigation: AppNavigation())
-}
