@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ProductsList: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @ObservedObject var salesModel: ProductsModel
+    @ObservedObject var appNavigation: AppNavigation
     @State private var showNewProductSheet = false
     @State private var presentedProducts = [Product]()
-    @ObservedObject var salesModel: SalesModel
+    @State private var filterCategorySelection: ProductCategory?
     
     var columns: [GridItem] {
         // If font size is too large,
@@ -25,10 +27,12 @@ struct ProductsList: View {
     }
     
     var body: some View {
+        
         ScrollView {
-            // TODO: Separate products into categories.
+            CategoryPicker(salesModel: self.salesModel, selection: self.$filterCategorySelection)
+                .padding(.horizontal)
             LazyVGrid(columns: self.columns) {
-                ForEach(salesModel.sampleProducts) { product in
+                ForEach(salesModel.Products) { product in
                     NavigationLink(value: product) {
                         ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
                             .tint(.primary)
@@ -36,18 +40,53 @@ struct ProductsList: View {
                 }
             }
             .padding(.horizontal)
+            
         }
-        .toolbar(content: {
-            ToolbarItem(placement: .primaryAction) {
-                Button("createNewProduct", systemImage: "plus.circle.fill") {
-                    self.showNewProductSheet.toggle()
-                }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                newProductButton
             }
-        })
+        }
         .sheet(isPresented: self.$showNewProductSheet, content: {
             NewProductView(salesModel: self.salesModel)
-            
         })
+        .refreshable {
+            await salesModel.fetchProducts()
+        }
+        .alert("error", isPresented: self.$salesModel.showErrorMessage) {
+            Button("dismiss") {
+                self.salesModel.errorMessage = nil
+                self.salesModel.actionResponse = nil
+            }
+        } message: {
+            Text(self.salesModel.errorMessage ?? "unexpected_error")
+        }
+        .overlay {
+            if self.salesModel.Products.isEmpty {
+                ContentUnavailableView {
+                    Label("no_products", systemImage: "square.slash.fill")
+                } description: {
+                    Text("add_products_information")
+                } actions: {
+                    if let response = salesModel.actionResponse, response == .InProgress {
+                        ProgressView()
+                    } else {
+                        Button("reload") {
+                            Task {
+                                await self.salesModel.fetchProducts()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    var newProductButton: some View {
+        Button("createNewProduct", systemImage: "plus.circle.fill") {
+            self.showNewProductSheet.toggle()
+        }
     }
 }
 
@@ -55,11 +94,14 @@ struct ProductCard: View {
     let dynamicTypeSize: DynamicTypeSize
     let product: Product
     let currencyCode = Locale.current.currency?.identifier ?? "USD"
+    var cardColor: Color {
+        return CustomColor(rawValue: product.color)?.color ?? .primary
+    }
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 15)
-                .foregroundStyle(product.color.opacity(0.15))
+                .foregroundStyle(cardColor.opacity(0.15))
             
             // Dynamic type sizes too large shoud
             // display data in a vertical layout.
@@ -67,7 +109,7 @@ struct ProductCard: View {
             if self.dynamicTypeSize >= .large {
                 VStack {
                     Text(product.name)
-                        .foregroundStyle(product.color)
+                        .foregroundStyle(cardColor)
                         .bold()
                         .lineLimit(3)
                         .accessibilityLabel(product.name)
@@ -77,7 +119,8 @@ struct ProductCard: View {
             } else {
                 HStack {
                     Text(product.name)
-                        .foregroundStyle(product.color)
+                        .multilineTextAlignment(.leading)
+                        .foregroundStyle(cardColor)
                         .bold()
                         .lineLimit(3)
                         .accessibilityLabel(product.name)
@@ -91,5 +134,5 @@ struct ProductCard: View {
 }
 
 #Preview {
-    ProductsTab(salesModel: SalesModel(), appNavigation: AppNavigation())
+    ProductsTab(salesModel: ProductsModel(), appNavigation: AppNavigation())
 }

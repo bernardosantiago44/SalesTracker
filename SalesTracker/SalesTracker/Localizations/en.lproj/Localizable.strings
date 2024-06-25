@@ -10,6 +10,10 @@
 "done" = "Done";
 "add" = "Add";
 "close" = "Close";
+"cancel" = "Cancel";
+"reload" = "Reload";
+"dismiss" = "Dismiss";
+"error" = "Error";
 
 // MARK: - Authentication
 "email" = "Email";
@@ -35,3 +39,26 @@
 "productname" = "Product name";
 "productprice" = "Product price";
 "createNewProduct" = "Create new product";
+"no_products" = "No saved products";
+"add_products_information" = "Start by tapping the + button at the top right corner.";
+"active_discounts" = "Active discounts";
+"no_discounts" = "No discounts";
+"sales_today" = "Sales today";
+"category" = "Category";
+"add_category" = "New category";
+"delete_product" = "Delete product";
+"delete_product_confirmation" = "Are you sure you want to delete this product?";
+"delete_product_action_warning" = "This action can not be undonde.";
+"inventory_followup" = "Inventory follow-up";
+"inventory" = "Inventory";
+"current_inventory" = "Current inventory";
+"low_inventory_notifications" = "Low-inventory notifications";
+"no_notifications" = "Disabled";
+"barcode_description" = "Easily identify products with barcodes or QR codes. You'll need to grant SalesTracker camera usage permission.";
+
+// MARK: - Trends & Sales
+"monthly_sales" = "Monthly sales";
+"no_data" = "No data this period";
+"add_records_description" = "Start by adding sales records.";
+"product_trends" = "Product trends";
+"total_sales" = "Units sold";

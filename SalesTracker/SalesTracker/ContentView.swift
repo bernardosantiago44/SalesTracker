@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var salesModel: SalesModel
+    @ObservedObject var productsModel: ProductsModel
     @ObservedObject var appNavigation: AppNavigation
+    @ObservedObject var salesModel: SalesModel
     
     var body: some View {
         TabView(selection: self.$appNavigation.selectedTab) {
-            ProductsTab(salesModel: self.salesModel, appNavigation: self.appNavigation)
+            ProductsTab(salesModel: self.productsModel, appNavigation: self.appNavigation)
                 .tabItem {
                     Label("products", systemImage: "rectangle.grid.2x2")
                 }
                 .tag(AppPages.productsList)
+            
+            MonthlySalesTab(salesModel: self.salesModel)
+                .tabItem { Label("sales", systemImage: "chart.line.uptrend.xyaxis") }
+                .tag(AppPages.trends)
             
             AccountTab(appNavigation: self.appNavigation)
                 .tabItem {
@@ -29,12 +34,17 @@ struct ContentView: View {
         // If no user is logged in
         // present the modal to authenticate
         //
-        .fullScreenCover(isPresented: self.$appNavigation.askForLogin, content: {
-            LoginTab(appNavigation: self.appNavigation)
+        .fullScreenCover(isPresented: self.$appNavigation.askForLogin, onDismiss: {
+            Task {
+                await productsModel.fetchProducts()
+                await productsModel.fetchCategories()
+            }
+        }, content: {
+            LoginTab(appNavigation: self.appNavigation, salesModel: self.productsModel)
         })
     }
 }
 
 #Preview {
-    ContentView(salesModel: SalesModel(), appNavigation: AppNavigation())
+    ContentView(productsModel: ProductsModel(), appNavigation: AppNavigation(), salesModel: SalesModel())
 }

@@ -8,9 +8,10 @@
 import Foundation
 import FirebaseAuth
 
-final class AuthenticationHandler: ObservableObject {
-    @Published var errorOccured = false
-    @Published var authenticationStatus: AuthenticationStatus?
+@Observable
+final class AuthenticationHandler {
+    var errorOccured = false
+    var authenticationStatus: AuthenticationStatus = .notAuthenticated
     
     func registerUser(email: String, password: String) {
         self.errorOccured = false
@@ -27,7 +28,7 @@ final class AuthenticationHandler: ObservableObject {
     
     func login(email: String, password: String) -> AuthenticationStatus {
         self.errorOccured = false
-        var status: AuthenticationStatus = .Successful
+        var status: AuthenticationStatus = .Error(message: "unknown_error")
         
         Auth.auth().signIn(withEmail: email, password: password) { _, error in
             if let error {
