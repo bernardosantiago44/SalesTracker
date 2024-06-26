@@ -62,3 +62,14 @@
 "add_records_description" = "Start by adding sales records.";
 "product_trends" = "Product trends";
 "total_sales" = "Units sold";
+"sales" = "Sales";
+
+// MARK: - Tickets List
+"tickets" = "Tickets";
+"product" = "Product";
+"count" = "Quantity";
+"price" = "Price";
+"total" = "Total";
+
+"no_tickets" = "No tickets";
+"add_tickets_description" = "Start by registering a sale!";

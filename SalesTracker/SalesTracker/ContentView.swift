@@ -13,6 +13,7 @@ struct ContentView: View {
     @ObservedObject var appNavigation: AppNavigation
     @ObservedObject var salesModel: SalesModel
     @State private var authViewModel = AuthenticationViewModel()
+    @State private var ticketsViewModel = TicketsViewModel()
     
     var body: some View {
         if !authViewModel.isUserAuthenticated() {
@@ -26,6 +27,12 @@ struct ContentView: View {
                     }
                     .tag(AppPages.productsList)
                 
+                TicketsTab(ticketsViewModel: self.ticketsViewModel)
+                    .tabItem {
+                        Label("tickets", systemImage: AppPages.ticketsList.rawValue)
+                    }
+                    .tag(AppPages.ticketsList)
+
                 MonthlySalesTab(salesModel: self.salesModel)
                     .tabItem { Label("sales", systemImage: "chart.line.uptrend.xyaxis") }
                     .tag(AppPages.trends)

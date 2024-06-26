@@ -30,6 +30,11 @@
 		D144EBB52B73F7E4004B9407 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144EBB32B73F7DF004B9407 /* DateFunctions.swift */; };
 		D144EBB82B73FAAA004B9407 /* MonthlySales.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144EBB72B73FAAA004B9407 /* MonthlySales.swift */; };
 		D1610EA42AF7494500C99235 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1610EA32AF7494500C99235 /* assets.xcassets */; };
+		D168384B2C2A592E00C56EE0 /* TicketsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168384A2C2A592E00C56EE0 /* TicketsTab.swift */; };
+		D168384E2C2A5A0900C56EE0 /* TicketsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168384D2C2A5A0900C56EE0 /* TicketsList.swift */; };
+		D16838502C2A5D7800C56EE0 /* TicketsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168384F2C2A5D7400C56EE0 /* TicketsViewModel.swift */; };
+		D16838532C2A5DBE00C56EE0 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16838522C2A5DBE00C56EE0 /* Ticket.swift */; };
+		D16838552C2A6E6B00C56EE0 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16838542C2A6E6B00C56EE0 /* TicketDetailView.swift */; };
 		D1799A782B0ADF4D004BF6CA /* ProductsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1799A772B0ADF4D004BF6CA /* ProductsTab.swift */; };
 		D1799A7A2B0AE13F004BF6CA /* AccountTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1799A792B0AE13F004BF6CA /* AccountTab.swift */; };
 		D1799A7C2B0AE154004BF6CA /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1799A7B2B0AE154004BF6CA /* AccountManager.swift */; };
@@ -87,6 +92,11 @@
 		D144EBB32B73F7DF004B9407 /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
 		D144EBB72B73FAAA004B9407 /* MonthlySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySales.swift; sourceTree = "<group>"; };
 		D1610EA32AF7494500C99235 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = assets.xcassets; path = View/ProductManagement/assets.xcassets; sourceTree = "<group>"; };
+		D168384A2C2A592E00C56EE0 /* TicketsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsTab.swift; sourceTree = "<group>"; };
+		D168384D2C2A5A0900C56EE0 /* TicketsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsList.swift; sourceTree = "<group>"; };
+		D168384F2C2A5D7400C56EE0 /* TicketsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsViewModel.swift; sourceTree = "<group>"; };
+		D16838522C2A5DBE00C56EE0 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		D16838542C2A6E6B00C56EE0 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
 		D174F4AC2B0B27E00010CAE9 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		D1799A772B0ADF4D004BF6CA /* ProductsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTab.swift; sourceTree = "<group>"; };
 		D1799A792B0AE13F004BF6CA /* AccountTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTab.swift; sourceTree = "<group>"; };
@@ -181,6 +191,7 @@
 		D11A8D7F2AF42AB500FB4F02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D16838512C2A5DB700C56EE0 /* Tickets */,
 				D11A8D812AF42ADB00FB4F02 /* Product.swift */,
 				D1B72EC32B50BA420029ACC0 /* ProductCategory.swift */,
 				D193A5632B06E9D600DBB665 /* AppNavigation.swift */,
@@ -197,6 +208,7 @@
 		D11A8D802AF42ABE00FB4F02 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D168384C2C2A5A0100C56EE0 /* Tickets */,
 				D144EBB62B73FA86004B9407 /* SalesTrends */,
 				D1C414632B007B5F00D4AA26 /* Authentication */,
 				D1799A762B0ADEE6004BF6CA /* Navigation */,
@@ -252,6 +264,23 @@
 			path = SalesTrends;
 			sourceTree = "<group>";
 		};
+		D168384C2C2A5A0100C56EE0 /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				D168384D2C2A5A0900C56EE0 /* TicketsList.swift */,
+				D16838542C2A6E6B00C56EE0 /* TicketDetailView.swift */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
+		D16838512C2A5DB700C56EE0 /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				D16838522C2A5DBE00C56EE0 /* Ticket.swift */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
 		D1799A762B0ADEE6004BF6CA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +288,7 @@
 				D18F50D32B0AE86200612686 /* LoginTab.swift */,
 				D1799A772B0ADF4D004BF6CA /* ProductsTab.swift */,
 				D186371F2B8A5A6100E2C46B /* MonthlySalesTab.swift */,
+				D168384A2C2A592E00C56EE0 /* TicketsTab.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -266,6 +296,7 @@
 		D17EDB072B6D5C3D0000E07B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D168384F2C2A5D7400C56EE0 /* TicketsViewModel.swift */,
 				D17EDB082B6D5C4B0000E07B /* NewProductViewModel.swift */,
 				D128E1CE2C2A351800483AAC /* AuthenticationViewModel.swift */,
 			);
@@ -425,6 +456,8 @@
 				D128E1CF2C2A351800483AAC /* AuthenticationViewModel.swift in Sources */,
 				D185195A2B474C5B00396D6A /* CustomColor.swift in Sources */,
 				D13406522AF9C60C00088132 /* ProductDetailView.swift in Sources */,
+				D168384E2C2A5A0900C56EE0 /* TicketsList.swift in Sources */,
+				D16838502C2A5D7800C56EE0 /* TicketsViewModel.swift in Sources */,
 				D11A8D742AF425E500FB4F02 /* ContentView.swift in Sources */,
 				D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */,
 				D18F50D42B0AE86200612686 /* LoginTab.swift in Sources */,
@@ -446,7 +479,10 @@
 				D1B72EC42B50BA420029ACC0 /* ProductCategory.swift in Sources */,
 				D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */,
 				D1799A782B0ADF4D004BF6CA /* ProductsTab.swift in Sources */,
+				D16838552C2A6E6B00C56EE0 /* TicketDetailView.swift in Sources */,
 				D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */,
+				D16838532C2A5DBE00C56EE0 /* Ticket.swift in Sources */,
+				D168384B2C2A592E00C56EE0 /* TicketsTab.swift in Sources */,
 				D144EB9A2B73F25F004B9407 /* EmailValidator.swift in Sources */,
 				D193A5642B06E9D600DBB665 /* AppNavigation.swift in Sources */,
 				D18637202B8A5A6100E2C46B /* MonthlySalesTab.swift in Sources */,
@@ -628,6 +664,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -661,6 +698,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

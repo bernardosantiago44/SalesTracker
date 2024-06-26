@@ -18,13 +18,11 @@ struct ProductsTab: View {
                     ProductDetailView(salesModel: self.salesModel, appNavigation: self.appNavigation, product: product)
                 }
                 .navigationTitle("products")
-                .onAppear {
+                .task {
                     guard salesModel.intialFetchPending else { return }
-                    Task {
                         await salesModel.fetchProducts()
                         await salesModel.fetchCategories()
                         salesModel.intialFetchPending = false
-                    }
                 }
         }
     }
