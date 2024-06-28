@@ -43,10 +43,8 @@ final class SalesModel: ObservableObject {
             for document in query.documents {
                 let data    = try document.data(as: ProductSaleDescriptor.self)
                 let product = try await data.product.getDocument().data(as: Product.self)
-                let oldValue = salesDict[product.name] ?? 0
-                #warning("Try optimizing with default in dictionary")
-                // salesDict[product.name, default: 0] += data.count
-                salesDict[product.name] = data.count + oldValue
+//                #warning("Try optimizing with default in dictionary")
+                salesDict[product.name, default: 0] += data.count
                 totalSales += data.count
             }
         }

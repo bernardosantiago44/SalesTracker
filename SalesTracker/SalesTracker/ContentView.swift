@@ -13,7 +13,7 @@ struct ContentView: View {
     @ObservedObject var appNavigation: AppNavigation
     @ObservedObject var salesModel: SalesModel
     @State private var authViewModel = AuthenticationViewModel()
-    @State private var ticketsViewModel = TicketsViewModel()
+    @State private var ticketsViewModel = TicketsListViewModel()
     
     var body: some View {
         if !authViewModel.isUserAuthenticated() {

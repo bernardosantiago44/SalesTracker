@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TicketsList: View {
-    @Bindable var viewModel: TicketsViewModel
+    @Bindable var viewModel: TicketsListViewModel
     var body: some View {
         Group {
             if viewModel.tickets.isEmpty {
@@ -46,6 +46,25 @@ struct TicketsList: View {
                 print(error.localizedDescription)
             }
         }
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                newSaleButton
+            }
+        }
+        .fullScreenCover(isPresented: $viewModel.newSaleSheetPresented) {
+            NavigationStack {
+                SaleRegistererView()
+            }
+        }
+    }
+    
+    private var newSaleButton: some View {
+        Button {
+            self.viewModel.newSaleSheetPresented = true
+        } label: {
+            Image(systemName: "plus.circle.fill")
+        }
+        .font(.title3)
     }
     
     private func fetchTickets() async {
@@ -58,5 +77,5 @@ struct TicketsList: View {
 }
 
 #Preview {
-    TicketsList(viewModel: TicketsViewModel())
+    TicketsList(viewModel: TicketsListViewModel())
 }

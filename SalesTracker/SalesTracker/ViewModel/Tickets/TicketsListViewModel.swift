@@ -9,8 +9,9 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 
-@Observable class TicketsViewModel {
+@Observable class TicketsListViewModel {
     var tickets: [Ticket] = []
+    var newSaleSheetPresented = false
     
     @ObservationIgnored private var db = Firestore.firestore()
     
@@ -44,5 +45,44 @@ import FirebaseAuth
         }
         self.tickets.removeAll()
         self.tickets = readTickets
+    }
+    
+//    public func fetchTickets(inParallel: Bool = true, maximum: Int = 20) async throws {
+//        // Check if user is authenticated
+//        guard Auth.auth().currentUser != nil else {
+//            throw URLError(.userAuthenticationRequired)
+//        }
+//        
+//        let ticketsSnapshot = try await db.collection("tickets").limit(to: maximum).getDocuments()
+//        var readTickets = [Ticket]()
+//        
+//        for document in ticketsSnapshot.documentChanges {
+//            var ticket = try await withThrowingTaskGroup(of: Product.self) { taskGroup in
+//                var ticket = try document.document.data(as: Ticket.self)
+//                
+//                for productCounter in ticket.productsReference {
+//                    taskGroup.addTask { try await productCounter.product.getDocument().data(as: Product.self) }
+//                }
+//                
+//                ticket.productsSummary = taskGroup.reduce(into: [ProductCounter](), { result, product in
+//                    if let counter = ProductSummary(count: )
+//                    result.append(product)
+//                    
+//                })
+//                
+//            }
+//            
+//            readTickets.append(ticket)
+//        }
+//        
+//        var productsCounter = await withThrowingTaskGroup(of: Product.self, returning: [ProductCounter].self) { taskGroup in
+//            
+//            
+//            return []
+//        }
+//    }
+    
+    private func handleError(error: Error, alertUser: Bool) {
+        // alert user of error
     }
 }

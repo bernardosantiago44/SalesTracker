@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TicketsTab: View {
-    @Bindable var ticketsViewModel: TicketsViewModel
+    @Bindable var ticketsViewModel: TicketsListViewModel
     var body: some View {
         NavigationStack {
             TicketsList(viewModel: self.ticketsViewModel)
@@ -17,5 +17,5 @@ struct TicketsTab: View {
 }
 
 #Preview {
-    TicketsTab(ticketsViewModel: TicketsViewModel())
+    TicketsTab(ticketsViewModel: TicketsListViewModel())
 }
