@@ -21,11 +21,11 @@ import FirebaseAuth
     ///
     public func fetchTickets(maximum: Int = 20) async throws {
         // Check if the user is authenticated
-        guard Auth.auth().currentUser != nil else {
+        guard let user = Auth.auth().currentUser else {
             throw URLError(.userAuthenticationRequired)
         }
         
-        let ticketsQuerySnapshot = try await db.collection("tickets").getDocuments()
+        let ticketsQuerySnapshot = try await db.collection("users/\(user.uid)/tickets").getDocuments()
         var readTickets: [Ticket] = []
             
         for document in ticketsQuerySnapshot.documents {

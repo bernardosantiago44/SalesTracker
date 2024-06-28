@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 @Observable
 final class AuthenticationViewModel {
@@ -49,7 +50,8 @@ final class AuthenticationViewModel {
         // If call fails, show the error message and stop execution
         do {
             try await Auth.auth().createUser(withEmail: emailField, 
-                                                          password: passwordField)
+                                             password: passwordField)
+            try await registerCurrentLogintToDB()
         } catch {
             showErrorAlert = true
             authenticationStatus = .Error(message: error.localizedDescription)
@@ -65,6 +67,7 @@ final class AuthenticationViewModel {
         
         do {
             try await Auth.auth().signIn(withEmail: emailField, password: passwordField)
+            try await registerCurrentLogintToDB()
         } catch {
             self.showErrorAlert = true
             self.authenticationStatus = .Error(message: error.localizedDescription)
@@ -90,6 +93,17 @@ final class AuthenticationViewModel {
             self.user = user
             self.authenticationStatus = user == nil ? .notAuthenticated : .authenticated
         })
+    }
+    
+    /// Registers the current login date to the database
+    /// under the field `user.lastLogin`.
+    ///
+    private func registerCurrentLogintToDB() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.userCancelledAuthentication)
+        }
+        let db = Firestore.firestore()
+        try await db.collection("users").document(user.uid).setData(["lastLogin": Date.now])
     }
     
     public func isUserAuthenticated() -> Bool {
