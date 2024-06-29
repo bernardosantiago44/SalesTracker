@@ -14,6 +14,7 @@ struct ContentView: View {
     @ObservedObject var salesModel: SalesModel
     @State private var authViewModel = AuthenticationViewModel()
     @State private var ticketsViewModel = TicketsListViewModel()
+    @State private var productsViewMode = ProductsViewModel()
     
     var body: some View {
         if !authViewModel.isUserAuthenticated() {
@@ -21,7 +22,7 @@ struct ContentView: View {
             LoginTab(appNavigation: self.appNavigation, authViewModel: self.authViewModel)
         } else {
             TabView(selection: self.$appNavigation.selectedTab) {
-                ProductsTab(salesModel: self.productsModel, appNavigation: self.appNavigation)
+                ProductsTab(productsModel: self.productsModel, appNavigation: self.appNavigation)
                     .tabItem {
                         Label("products", systemImage: "rectangle.grid.2x2")
                     }

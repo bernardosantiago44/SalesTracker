@@ -45,12 +45,14 @@ final class AuthenticationViewModel {
     ///
     func registerUser() async {
         authenticationStatus = .authenticating
+        let db = Firestore.firestore()
         
         // Attempt to create the user
         // If call fails, show the error message and stop execution
         do {
-            try await Auth.auth().createUser(withEmail: emailField, 
+            let result = try await Auth.auth().createUser(withEmail: emailField,
                                              password: passwordField)
+            try await db.collection("users").document(result.user.uid).setData(["isAdmin": false])
             try await registerCurrentLogintToDB()
         } catch {
             showErrorAlert = true
@@ -103,7 +105,7 @@ final class AuthenticationViewModel {
             throw URLError(.userCancelledAuthentication)
         }
         let db = Firestore.firestore()
-        try await db.collection("users").document(user.uid).setData(["lastLogin": Date.now])
+        try await db.collection("users").document(user.uid).setData(["lastLogin" : Date.now], merge: true)
     }
     
     public func isUserAuthenticated() -> Bool {

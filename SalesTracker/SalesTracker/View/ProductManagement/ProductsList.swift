@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct ProductsList: View {
-    @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @ObservedObject var salesModel: ProductsModel
-    @ObservedObject var appNavigation: AppNavigation
-    @State private var showNewProductSheet = false
-    @State private var presentedProducts = [Product]()
-    @State private var filterCategorySelection: ProductCategory?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @State private var productsViewModel = ProductsViewModel(); #warning("Inject from parent view")
     
     var columns: [GridItem] {
         // If font size is too large,
@@ -27,71 +23,65 @@ struct ProductsList: View {
     }
     
     var body: some View {
-        
         ScrollView {
-            CategoryPicker(salesModel: self.salesModel, selection: self.$filterCategorySelection)
-                .padding(.horizontal)
-            LazyVGrid(columns: self.columns) {
-                ForEach(salesModel.Products) { product in
-                    NavigationLink(value: product) {
-                        ProductCard(dynamicTypeSize: self.dynamicTypeSize, product: product)
-                            .tint(.primary)
-                    }
-                }
-            }
-            .padding(.horizontal)
-            
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                newProductButton
-            }
-        }
-        .sheet(isPresented: self.$showNewProductSheet, content: {
-            NewProductView(salesModel: self.salesModel)
-        })
-        .refreshable {
-            await salesModel.fetchProducts()
-        }
-        .alert("error", isPresented: self.$salesModel.showErrorMessage) {
-            Button("dismiss") {
-                self.salesModel.errorMessage = nil
-                self.salesModel.actionResponse = nil
-            }
-        } message: {
-            Text(self.salesModel.errorMessage ?? "unexpected_error")
-        }
-        .overlay {
-            if self.salesModel.Products.isEmpty {
+            CategoryPicker(salesModel: self.productsViewModel, selection: $productsViewModel.filterCategorySelection)
+            if self.productsViewModel.products.isEmpty {
+                // Display a message of absent data
                 ContentUnavailableView {
                     Label("no_products", systemImage: "square.slash.fill")
                 } description: {
                     Text("add_products_information")
                 } actions: {
-                    if let response = salesModel.actionResponse, response == .InProgress {
+                    if self.productsViewModel.isBusy {
                         ProgressView()
                     } else {
                         Button("reload") {
                             Task {
-                                await self.salesModel.fetchProducts()
+                                await self.productsViewModel.downloadProducts()
                             }
                         }
                     }
                 }
+            } else {
+                LazyVGrid(columns: self.columns) {
+                    ForEach(self.productsViewModel.products) { product in
+                        NavigationLink(value: product) {
+                            ProductCard(product: product)
+                                .tint(.primary)
+                        }
+                    }
+                }
+                .padding(.horizontal)
             }
         }
-        
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                newProductButton
+            }
+        }
+        .sheet(isPresented: $productsViewModel.showNewProductSheet) {
+            NewProductView(salesModel: self.productsViewModel)
+        }
+        .refreshable {
+            await productsViewModel.downloadProducts()
+        }
+        .alert(Text("error"), isPresented: $productsViewModel.showErrorAlert) {
+            
+        } message: {
+            Text(productsViewModel.error?.localizedDescription ?? "unexpected_error")
+        }
+
     }
     
-    var newProductButton: some View {
+    private var newProductButton: some View {
         Button("createNewProduct", systemImage: "plus.circle.fill") {
-            self.showNewProductSheet.toggle()
+            self.productsViewModel.showNewProductSheet = true
         }
     }
 }
 
 struct ProductCard: View {
-    let dynamicTypeSize: DynamicTypeSize
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize: DynamicTypeSize
     let product: Product
     let currencyCode = Locale.current.currency?.identifier ?? "USD"
     var cardColor: Color {
@@ -134,5 +124,5 @@ struct ProductCard: View {
 }
 
 #Preview {
-    ProductsTab(salesModel: ProductsModel(), appNavigation: AppNavigation())
+    ProductsTab(productsModel: ProductsModel(), appNavigation: AppNavigation())
 }

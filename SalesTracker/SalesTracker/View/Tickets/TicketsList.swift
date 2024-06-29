@@ -64,7 +64,6 @@ struct TicketsList: View {
         } label: {
             Image(systemName: "plus.circle.fill")
         }
-        .font(.title3)
     }
     
     private func fetchTickets() async {

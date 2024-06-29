@@ -8,26 +8,26 @@
 import SwiftUI
 
 struct ProductsTab: View {
-    @ObservedObject var salesModel: ProductsModel
+    @Bindable var productsModel: ProductsViewModel
     @ObservedObject var appNavigation: AppNavigation
     
     var body: some View {
         NavigationStack(path: $appNavigation.productsNavigationPath) {
-            ProductsList(salesModel: self.salesModel, appNavigation: self.appNavigation)
+            ProductsList()
                 .navigationDestination(for: Product.self) { product in
-                    ProductDetailView(salesModel: self.salesModel, appNavigation: self.appNavigation, product: product)
+                    ProductDetailView(productsModel: self.productsModel, appNavigation: self.appNavigation, product: product)
                 }
                 .navigationTitle("products")
                 .task {
-                    guard salesModel.intialFetchPending else { return }
-                        await salesModel.fetchProducts()
-                        await salesModel.fetchCategories()
-                        salesModel.intialFetchPending = false
+                    guard productsModel.initialFetchPending else { return }
+                    await productsModel.downloadProducts()
+                    await productsModel.downloadCategories()
+                    productsModel.initialFetchPending = false
                 }
         }
     }
 }
 
 #Preview {
-    ProductsTab(salesModel: ProductsModel(), appNavigation: AppNavigation())
+    ProductsTab(productsModel: ProductsViewModel(), appNavigation: AppNavigation())
 }
