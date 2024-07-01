@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductDetailView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @ObservedObject var salesModel: ProductsModel
+    @Bindable var productsModel: ProductsViewModel
     @ObservedObject var appNavigation: AppNavigation
     @State private var inventoryFollowup = false
     @State private var deleteProductConfirmationDialog = false
@@ -51,14 +51,14 @@ struct ProductDetailView: View {
                 Button(role: .destructive) {
                     self.deleteProductConfirmationDialog.toggle()
                 } label: {
-                    if self.salesModel.actionResponse == .InProgress {
+                    if self.productsModel.isBusy {
                         ProgressView()
                     } else {
                         Label("delete_product", systemImage: "trash")
                     }
                 }
                 .buttonStyle(.borderedProminent)
-                .disabled(self.salesModel.actionResponse == .InProgress)
+                .disabled(self.productsModel.isBusy)
 
             }
             .frame(maxWidth: .infinity)
@@ -72,7 +72,8 @@ struct ProductDetailView: View {
                 
                 Button(role: .destructive) {
                     Task {
-                        await self.salesModel.deleteProductFromCatalog(productId: self.product.id)
+//                        await self.salesModel.deleteProductFromCatalog(productId: self.product.id)
+                        #warning("Allow to delete products")
                         self.appNavigation.goToMainView()
                     }
                     
@@ -116,6 +117,6 @@ struct ProductDetailView: View {
 
 #Preview {
     NavigationStack {
-        ProductDetailView(salesModel: ProductsModel(), appNavigation: AppNavigation(), product: ProductsModel().sampleProducts[0])
+        ProductDetailView(productsModel: ProductsViewModel(), appNavigation: AppNavigation(), product: Product())
     }
 }

@@ -40,6 +40,7 @@ final class AppNavigation: ObservableObject {
 
 enum AppPages: String, Hashable {
     case productsList = "productsList"
+    case ticketsList = "list.bullet.clipboard"
     case account = "account"
     case trends = "chart.line.uptrend.xyaxis"
 }

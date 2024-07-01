@@ -12,7 +12,6 @@
 		D11A8D792AF425E700FB4F02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11A8D782AF425E700FB4F02 /* Preview Assets.xcassets */; };
 		D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D812AF42ADB00FB4F02 /* Product.swift */; };
 		D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D832AF4470F00FB4F02 /* NewProductView.swift */; };
-		D11A8D862AF4476E00FB4F02 /* ProductsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D852AF4476E00FB4F02 /* ProductsModel.swift */; };
 		D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D882AF4507700FB4F02 /* ColorPicker.swift */; };
 		D12724D92B6F0A7C006A3BF8 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D12724D82B6F0A7C006A3BF8 /* CodeScanner */; };
 		D128E1CD2C2A343000483AAC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D128E1CC2C2A343000483AAC /* FirebaseAuth */; };
@@ -29,7 +28,13 @@
 		D144EBB42B73F7DF004B9407 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144EBB32B73F7DF004B9407 /* DateFunctions.swift */; };
 		D144EBB52B73F7E4004B9407 /* DateFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144EBB32B73F7DF004B9407 /* DateFunctions.swift */; };
 		D144EBB82B73FAAA004B9407 /* MonthlySales.swift in Sources */ = {isa = PBXBuildFile; fileRef = D144EBB72B73FAAA004B9407 /* MonthlySales.swift */; };
+		D15FE0222C3071BB002402CF /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15FE0212C3071BB002402CF /* ProductsViewModel.swift */; };
 		D1610EA42AF7494500C99235 /* assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1610EA32AF7494500C99235 /* assets.xcassets */; };
+		D168384B2C2A592E00C56EE0 /* TicketsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168384A2C2A592E00C56EE0 /* TicketsTab.swift */; };
+		D168384E2C2A5A0900C56EE0 /* TicketsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168384D2C2A5A0900C56EE0 /* TicketsList.swift */; };
+		D16838502C2A5D7800C56EE0 /* TicketsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168384F2C2A5D7400C56EE0 /* TicketsListViewModel.swift */; };
+		D16838532C2A5DBE00C56EE0 /* Ticket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16838522C2A5DBE00C56EE0 /* Ticket.swift */; };
+		D16838552C2A6E6B00C56EE0 /* TicketDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16838542C2A6E6B00C56EE0 /* TicketDetailView.swift */; };
 		D1799A782B0ADF4D004BF6CA /* ProductsTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1799A772B0ADF4D004BF6CA /* ProductsTab.swift */; };
 		D1799A7A2B0AE13F004BF6CA /* AccountTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1799A792B0AE13F004BF6CA /* AccountTab.swift */; };
 		D1799A7C2B0AE154004BF6CA /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1799A7B2B0AE154004BF6CA /* AccountManager.swift */; };
@@ -53,6 +58,8 @@
 		D1C414682B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */; };
 		D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */; };
 		D1FC646D2B058FF300A20757 /* AuthenticationFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FC646C2B058FF300A20757 /* AuthenticationFields.swift */; };
+		D1FF80BE2C2F299F00F2C02B /* SaleRegistererView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FF80BD2C2F299F00F2C02B /* SaleRegistererView.swift */; };
+		D1FF80C12C2F2A1300F2C02B /* NewTicketViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1FF80C02C2F2A0E00F2C02B /* NewTicketViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +93,13 @@
 		D144EBB12B73F7AC004B9407 /* DatePathsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePathsTests.swift; sourceTree = "<group>"; };
 		D144EBB32B73F7DF004B9407 /* DateFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFunctions.swift; sourceTree = "<group>"; };
 		D144EBB72B73FAAA004B9407 /* MonthlySales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlySales.swift; sourceTree = "<group>"; };
+		D15FE0212C3071BB002402CF /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		D1610EA32AF7494500C99235 /* assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = assets.xcassets; path = View/ProductManagement/assets.xcassets; sourceTree = "<group>"; };
+		D168384A2C2A592E00C56EE0 /* TicketsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsTab.swift; sourceTree = "<group>"; };
+		D168384D2C2A5A0900C56EE0 /* TicketsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsList.swift; sourceTree = "<group>"; };
+		D168384F2C2A5D7400C56EE0 /* TicketsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketsListViewModel.swift; sourceTree = "<group>"; };
+		D16838522C2A5DBE00C56EE0 /* Ticket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ticket.swift; sourceTree = "<group>"; };
+		D16838542C2A6E6B00C56EE0 /* TicketDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDetailView.swift; sourceTree = "<group>"; };
 		D174F4AC2B0B27E00010CAE9 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		D1799A772B0ADF4D004BF6CA /* ProductsTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsTab.swift; sourceTree = "<group>"; };
 		D1799A792B0AE13F004BF6CA /* AccountTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTab.swift; sourceTree = "<group>"; };
@@ -108,6 +121,8 @@
 		D1C414672B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedGroupTextFieldStyle.swift; sourceTree = "<group>"; };
 		D1CA6E6C2AF8024800D73C09 /* ActionReponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionReponse.swift; sourceTree = "<group>"; };
 		D1FC646C2B058FF300A20757 /* AuthenticationFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationFields.swift; sourceTree = "<group>"; };
+		D1FF80BD2C2F299F00F2C02B /* SaleRegistererView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleRegistererView.swift; sourceTree = "<group>"; };
+		D1FF80C02C2F2A0E00F2C02B /* NewTicketViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTicketViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +196,7 @@
 		D11A8D7F2AF42AB500FB4F02 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D16838512C2A5DB700C56EE0 /* Tickets */,
 				D11A8D812AF42ADB00FB4F02 /* Product.swift */,
 				D1B72EC32B50BA420029ACC0 /* ProductCategory.swift */,
 				D193A5632B06E9D600DBB665 /* AppNavigation.swift */,
@@ -197,6 +213,7 @@
 		D11A8D802AF42ABE00FB4F02 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D168384C2C2A5A0100C56EE0 /* Tickets */,
 				D144EBB62B73FA86004B9407 /* SalesTrends */,
 				D1C414632B007B5F00D4AA26 /* Authentication */,
 				D1799A762B0ADEE6004BF6CA /* Navigation */,
@@ -252,6 +269,33 @@
 			path = SalesTrends;
 			sourceTree = "<group>";
 		};
+		D15FE0202C3071AE002402CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D17EDB082B6D5C4B0000E07B /* NewProductViewModel.swift */,
+				D15FE0212C3071BB002402CF /* ProductsViewModel.swift */,
+			);
+			path = Products;
+			sourceTree = "<group>";
+		};
+		D168384C2C2A5A0100C56EE0 /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				D168384D2C2A5A0900C56EE0 /* TicketsList.swift */,
+				D16838542C2A6E6B00C56EE0 /* TicketDetailView.swift */,
+				D1FF80BD2C2F299F00F2C02B /* SaleRegistererView.swift */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
+		D16838512C2A5DB700C56EE0 /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				D16838522C2A5DBE00C56EE0 /* Ticket.swift */,
+			);
+			path = Tickets;
+			sourceTree = "<group>";
+		};
 		D1799A762B0ADEE6004BF6CA /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +303,7 @@
 				D18F50D32B0AE86200612686 /* LoginTab.swift */,
 				D1799A772B0ADF4D004BF6CA /* ProductsTab.swift */,
 				D186371F2B8A5A6100E2C46B /* MonthlySalesTab.swift */,
+				D168384A2C2A592E00C56EE0 /* TicketsTab.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -266,7 +311,8 @@
 		D17EDB072B6D5C3D0000E07B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				D17EDB082B6D5C4B0000E07B /* NewProductViewModel.swift */,
+				D15FE0202C3071AE002402CF /* Products */,
+				D1FF80BF2C2F29AC00F2C02B /* Tickets */,
 				D128E1CE2C2A351800483AAC /* AuthenticationViewModel.swift */,
 			);
 			path = ViewModel;
@@ -299,6 +345,15 @@
 				D18EE2142B487B9800DA76D8 /* String.swift */,
 			);
 			path = "Helper files";
+			sourceTree = "<group>";
+		};
+		D1FF80BF2C2F29AC00F2C02B /* Tickets */ = {
+			isa = PBXGroup;
+			children = (
+				D1FF80C02C2F2A0E00F2C02B /* NewTicketViewModel.swift */,
+				D168384F2C2A5D7400C56EE0 /* TicketsListViewModel.swift */,
+			);
+			path = Tickets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -419,12 +474,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D13E97262B66CAF900922540 /* CurrencyTextField.swift in Sources */,
-				D11A8D862AF4476E00FB4F02 /* ProductsModel.swift in Sources */,
+				D1FF80C12C2F2A1300F2C02B /* NewTicketViewModel.swift in Sources */,
 				D1799A7A2B0AE13F004BF6CA /* AccountTab.swift in Sources */,
 				D18EE2152B487B9800DA76D8 /* String.swift in Sources */,
 				D128E1CF2C2A351800483AAC /* AuthenticationViewModel.swift in Sources */,
 				D185195A2B474C5B00396D6A /* CustomColor.swift in Sources */,
 				D13406522AF9C60C00088132 /* ProductDetailView.swift in Sources */,
+				D168384E2C2A5A0900C56EE0 /* TicketsList.swift in Sources */,
+				D16838502C2A5D7800C56EE0 /* TicketsListViewModel.swift in Sources */,
 				D11A8D742AF425E500FB4F02 /* ContentView.swift in Sources */,
 				D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */,
 				D18F50D42B0AE86200612686 /* LoginTab.swift in Sources */,
@@ -433,8 +490,10 @@
 				D1FC646D2B058FF300A20757 /* AuthenticationFields.swift in Sources */,
 				D1C414652B007B7200D4AA26 /* LoginView.swift in Sources */,
 				D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */,
+				D15FE0222C3071BB002402CF /* ProductsViewModel.swift in Sources */,
 				D1A352F22B013F8600A72AB5 /* AuthenticationHandler.swift in Sources */,
 				D1A2CD782AF6BBC20061BDAE /* ProductsList.swift in Sources */,
+				D1FF80BE2C2F299F00F2C02B /* SaleRegistererView.swift in Sources */,
 				D1C414682B007E4700D4AA26 /* RoundedGroupTextFieldStyle.swift in Sources */,
 				D11A8D722AF425E500FB4F02 /* SalesTrackerApp.swift in Sources */,
 				D144EBB82B73FAAA004B9407 /* MonthlySales.swift in Sources */,
@@ -446,7 +505,10 @@
 				D1B72EC42B50BA420029ACC0 /* ProductCategory.swift in Sources */,
 				D1CA6E6D2AF8024800D73C09 /* ActionReponse.swift in Sources */,
 				D1799A782B0ADF4D004BF6CA /* ProductsTab.swift in Sources */,
+				D16838552C2A6E6B00C56EE0 /* TicketDetailView.swift in Sources */,
 				D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */,
+				D16838532C2A5DBE00C56EE0 /* Ticket.swift in Sources */,
+				D168384B2C2A592E00C56EE0 /* TicketsTab.swift in Sources */,
 				D144EB9A2B73F25F004B9407 /* EmailValidator.swift in Sources */,
 				D193A5642B06E9D600DBB665 /* AppNavigation.swift in Sources */,
 				D18637202B8A5A6100E2C46B /* MonthlySalesTab.swift in Sources */,
@@ -628,6 +690,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -661,6 +724,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

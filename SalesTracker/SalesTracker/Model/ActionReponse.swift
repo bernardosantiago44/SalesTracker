@@ -14,7 +14,7 @@ enum ActionReponse: Equatable {
 }
 
 enum AuthenticationStatus: Equatable {
-    case Successful
+    case authenticated
     case Error(message: String)
     case notAuthenticated
     case authenticating

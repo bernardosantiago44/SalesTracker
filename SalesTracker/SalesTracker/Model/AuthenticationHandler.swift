@@ -22,7 +22,7 @@ final class AuthenticationHandler {
                 self.authenticationStatus = self.handleError(error, email: email, password: password)
                 return
             }
-            self.authenticationStatus = .Successful
+            self.authenticationStatus = .authenticated
         }
     }
     

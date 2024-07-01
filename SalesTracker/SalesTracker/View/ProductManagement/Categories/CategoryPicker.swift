@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryPicker: View {
-    @ObservedObject var salesModel: ProductsModel
+    @Bindable var salesModel: ProductsViewModel
     @Binding var selection: ProductCategory?
     
     var body: some View {
@@ -38,5 +38,5 @@ struct CategoryPicker: View {
 }
 
 #Preview {
-    CategoryPicker(salesModel: ProductsModel(), selection: .constant(.dessert))
+    CategoryPicker(salesModel: ProductsViewModel(), selection: .constant(.dessert))
 }

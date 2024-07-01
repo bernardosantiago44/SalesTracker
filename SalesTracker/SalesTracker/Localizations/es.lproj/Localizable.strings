@@ -62,3 +62,14 @@
 "add_records_description" = "Empieza registrando ventas.";
 "product_trends" = "Por producto";
 "total_sales" = "Unidades vendidas";
+"sales" = "Ventas";
+
+// MARK: - Tickets List
+"tickets" = "Tickets";
+"product" = "Producto";
+"count" = "Cantidad";
+"price" = "Precio";
+"total" = "Total";
+
+"no_tickets" = "Sin registros";
+"add_tickets_description" = "¡Empieza registrando una venta!";

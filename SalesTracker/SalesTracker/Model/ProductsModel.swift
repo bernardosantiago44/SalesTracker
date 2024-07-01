@@ -38,16 +38,15 @@ final class ProductsModel: ObservableObject {
             return
         }
         
-        guard Auth.auth().currentUser != nil else {
-            self.showErrorMessage = true
-            self.errorMessage = "not_logged_in"
+        guard let user = Auth.auth().currentUser else {
+            userNeedsToAuthenticate()
             return
         }
         
         self.actionResponse = .InProgress
         self.Products.append(product)
         do {
-            try db.collection("products").document(product.id).setData(from: product)
+            try db.collection("users/\(user.uid)/products").document(product.id).setData(from: product)
             self.actionResponse = .Successful
             print("Successfully added \(product.name) to database.")
         } catch {
@@ -60,10 +59,15 @@ final class ProductsModel: ObservableObject {
     }
     
     func fetchProducts() async {
-        guard Auth.auth().currentUser != nil else { return }
+        guard let user = Auth.auth().currentUser else {
+            // Let the user know that they'll have to re-authenticate
+            self.userNeedsToAuthenticate()
+            return
+        }
+        
         self.actionResponse = .InProgress
         do {
-            let documentsQuery = try await db.collection("products").limit(to: 10).getDocuments()
+            let documentsQuery = try await db.collection("users/\(user.uid)/products").limit(to: 10).getDocuments()
             self.Products.removeAll()
             for document in documentsQuery.documents {
                 let documentData = try document.data(as: Product.self)
@@ -79,11 +83,14 @@ final class ProductsModel: ObservableObject {
     }
     
     func deleteProductFromCatalog(productId: String) async {
-        guard Auth.auth().currentUser != nil else { return }
+        guard let user = Auth.auth().currentUser else {
+            userNeedsToAuthenticate()
+            return
+        }
         self.actionResponse = .InProgress
         print("Deleting product")
         do {
-            try await db.collection("products").document(productId).delete()
+            try await db.collection("users/\(user.uid)/products").document(productId).delete()
             self.Products.removeAll(where: { $0.id == productId })
             print("Document successfully deleted")
         } catch {
@@ -110,16 +117,15 @@ final class ProductsModel: ObservableObject {
             return
         }
         
-        guard Auth.auth().currentUser != nil else {
-            self.showErrorMessage = true
-            self.errorMessage = "not_logged_in"
+        guard let user = Auth.auth().currentUser else {
+            self.userNeedsToAuthenticate()
             return
         }
         
         self.actionResponse = .InProgress
         self.categories.append(category)
         do {
-            try db.collection("categories").document(category.id).setData(from: category)
+            try db.collection("users/\(user.uid)/categories").document(category.id).setData(from: category)
         } catch {
             self.showErrorMessage = true
             self.errorMessage = error.localizedDescription
@@ -130,11 +136,14 @@ final class ProductsModel: ObservableObject {
     
     func fetchCategories() async {
         
-        guard Auth.auth().currentUser != nil else { return }
+        guard let user = Auth.auth().currentUser else {
+            self.userNeedsToAuthenticate()
+            return
+        }
         self.actionResponse = .InProgress
         
         do {
-            let categoriesQuery = try await db.collection("categories").limit(to: 20).getDocuments()
+            let categoriesQuery = try await db.collection("users/\(user.uid)/categories").limit(to: 20).getDocuments()
             self.categories.removeAll()
             for document in categoriesQuery.documents {
                 let documentCategoryData = try document.data(as: ProductCategory.self)
@@ -152,5 +161,12 @@ final class ProductsModel: ObservableObject {
     func raiseError() {
         self.showErrorMessage = true
         self.errorMessage = "This is a test error."
+    }
+    
+    /// Method to let the user know that authentication is required.
+    ///
+    private func userNeedsToAuthenticate() {
+        self.errorMessage = URLError(.userAuthenticationRequired).localizedDescription
+        self.showErrorMessage = true
     }
 }

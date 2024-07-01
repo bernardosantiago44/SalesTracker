@@ -9,7 +9,7 @@ import CodeScanner
 import SwiftUI
 
 struct NewProductView: View {
-    @ObservedObject var salesModel: ProductsModel
+    @Bindable var salesModel: ProductsViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var newProduct = NewProductViewModel()
     @State private var showsNewCategorySheet = false
@@ -84,11 +84,11 @@ struct NewProductView: View {
                     Button("done") {
                         let product = Product(from: self.newProduct)
                         if product.isValid() {
-                            self.salesModel.addProductToCatalog(product)
+                            self.salesModel.addProduct(product)
                             dismiss()
                         }
                     }
-                    .disabled(self.newProduct.isInvalid || self.salesModel.actionResponse == .InProgress)
+                    .disabled(self.newProduct.isInvalid || self.salesModel.isBusy)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("cancel") {
@@ -104,7 +104,7 @@ struct NewProductView: View {
                     .presentationDetents([.fraction(0.20)])
                     Button("add") {
                         let newCategory = ProductCategory(category: self.newCategoryName)
-                        self.salesModel.registerCategory(newCategory)
+                        self.salesModel.createCategory(newCategory)
                         self.newProduct.category = newCategory
                         self.showsNewCategorySheet = false
                         self.newCategoryName = ""
@@ -156,5 +156,5 @@ struct NewProductView: View {
 }
 
 #Preview {
-    NewProductView(salesModel: ProductsModel())
+    NewProductView(salesModel: ProductsViewModel())
 }

@@ -11,10 +11,10 @@ import FirebaseAuth
 struct AccountManager: View {
     @ObservedObject var appNavigation: AppNavigation
     @State private var alertSignOutShown = false
+    @Bindable var authViewModel: AuthenticationViewModel
     
-    let user = Auth.auth().currentUser
     var body: some View {
-        if let user {
+        if let user = authViewModel.user {
             List {
                 if user.email != nil {
                     Section {
@@ -35,14 +35,7 @@ struct AccountManager: View {
             }
             .alert("signout_question", isPresented: $alertSignOutShown) {
                 Button("signout", role: .destructive) {
-                    // TODO: Embed signout method in Auth Handler.
-                    do {
-                        try Auth.auth().signOut()
-                        self.appNavigation.askForLogin = true
-                        self.appNavigation.goToMainTab()
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+                    authViewModel.signOut()
                 }
             }
         } else {
@@ -55,5 +48,5 @@ struct AccountManager: View {
 }
 
 #Preview {
-    AccountManager(appNavigation: AppNavigation())
+    ContentView(appNavigation: AppNavigation(), salesModel: SalesModel())
 }
