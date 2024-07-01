@@ -12,7 +12,6 @@
 		D11A8D792AF425E700FB4F02 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D11A8D782AF425E700FB4F02 /* Preview Assets.xcassets */; };
 		D11A8D822AF42ADB00FB4F02 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D812AF42ADB00FB4F02 /* Product.swift */; };
 		D11A8D842AF4470F00FB4F02 /* NewProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D832AF4470F00FB4F02 /* NewProductView.swift */; };
-		D11A8D862AF4476E00FB4F02 /* ProductsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D852AF4476E00FB4F02 /* ProductsModel.swift */; };
 		D11A8D892AF4507700FB4F02 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A8D882AF4507700FB4F02 /* ColorPicker.swift */; };
 		D12724D92B6F0A7C006A3BF8 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = D12724D82B6F0A7C006A3BF8 /* CodeScanner */; };
 		D128E1CD2C2A343000483AAC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = D128E1CC2C2A343000483AAC /* FirebaseAuth */; };
@@ -475,7 +474,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D13E97262B66CAF900922540 /* CurrencyTextField.swift in Sources */,
-				D11A8D862AF4476E00FB4F02 /* ProductsModel.swift in Sources */,
 				D1FF80C12C2F2A1300F2C02B /* NewTicketViewModel.swift in Sources */,
 				D1799A7A2B0AE13F004BF6CA /* AccountTab.swift in Sources */,
 				D18EE2152B487B9800DA76D8 /* String.swift in Sources */,

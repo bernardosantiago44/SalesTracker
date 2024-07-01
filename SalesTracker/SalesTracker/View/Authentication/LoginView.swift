@@ -132,6 +132,6 @@ struct LoginView: View {
 
 #Preview {
     NavigationStack {
-        ContentView(productsModel: ProductsModel(), appNavigation: AppNavigation(), salesModel: SalesModel())
+        ContentView(appNavigation: AppNavigation(), salesModel: SalesModel())
     }
 }

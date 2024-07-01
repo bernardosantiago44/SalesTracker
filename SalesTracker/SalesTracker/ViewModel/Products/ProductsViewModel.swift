@@ -30,14 +30,14 @@ import FirebaseAuth
         }
         
         let documentsQuery = try await db.collection("users/\(user.uid)/products").getDocuments()
-//        self.products.removeAll()
+        self.products.removeAll()
         if documentsQuery.isEmpty {
             self.isBusy = false
             return
         }
         
-        for change in documentsQuery.documentChanges {
-            let product = try change.document.data(as: Product.self)
+        for doc in documentsQuery.documents {
+            let product = try doc.data(as: Product.self)
             self.products.append(product)
         }
     }

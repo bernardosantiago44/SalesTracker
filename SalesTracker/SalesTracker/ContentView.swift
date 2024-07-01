@@ -9,12 +9,11 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
-    @ObservedObject var productsModel: ProductsModel
+    @State private var productsViewModel = ProductsViewModel()
     @ObservedObject var appNavigation: AppNavigation
     @ObservedObject var salesModel: SalesModel
     @State private var authViewModel = AuthenticationViewModel()
     @State private var ticketsViewModel = TicketsListViewModel()
-    @State private var productsViewMode = ProductsViewModel()
     
     var body: some View {
         if !authViewModel.isUserAuthenticated() {
@@ -22,7 +21,7 @@ struct ContentView: View {
             LoginTab(appNavigation: self.appNavigation, authViewModel: self.authViewModel)
         } else {
             TabView(selection: self.$appNavigation.selectedTab) {
-                ProductsTab(productsModel: self.productsModel, appNavigation: self.appNavigation)
+                ProductsTab(productsModel: self.productsViewModel, appNavigation: self.appNavigation)
                     .tabItem {
                         Label("products", systemImage: "rectangle.grid.2x2")
                     }
@@ -49,5 +48,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(productsModel: ProductsModel(), appNavigation: AppNavigation(), salesModel: SalesModel())
+    ContentView(appNavigation: AppNavigation(), salesModel: SalesModel())
 }

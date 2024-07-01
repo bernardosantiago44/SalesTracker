@@ -117,6 +117,6 @@ struct ProductDetailView: View {
 
 #Preview {
     NavigationStack {
-        ProductDetailView(productsModel: ProductsViewModel(), appNavigation: AppNavigation(), product: ProductsModel().sampleProducts[0])
+        ProductDetailView(productsModel: ProductsViewModel(), appNavigation: AppNavigation(), product: Product())
     }
 }

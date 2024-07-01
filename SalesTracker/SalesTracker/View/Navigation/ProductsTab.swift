@@ -13,7 +13,7 @@ struct ProductsTab: View {
     
     var body: some View {
         NavigationStack(path: $appNavigation.productsNavigationPath) {
-            ProductsList()
+            ProductsList(productsViewModel: self.productsModel)
                 .navigationDestination(for: Product.self) { product in
                     ProductDetailView(productsModel: self.productsModel, appNavigation: self.appNavigation, product: product)
                 }

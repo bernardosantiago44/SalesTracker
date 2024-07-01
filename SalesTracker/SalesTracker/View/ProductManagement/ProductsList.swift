@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProductsList: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @State private var productsViewModel = ProductsViewModel(); #warning("Inject from parent view")
+    @Bindable var productsViewModel: ProductsViewModel
     
     var columns: [GridItem] {
         // If font size is too large,
@@ -25,6 +25,7 @@ struct ProductsList: View {
     var body: some View {
         ScrollView {
             CategoryPicker(salesModel: self.productsViewModel, selection: $productsViewModel.filterCategorySelection)
+                .padding(.horizontal)
             if self.productsViewModel.products.isEmpty {
                 // Display a message of absent data
                 ContentUnavailableView {
@@ -124,5 +125,5 @@ struct ProductCard: View {
 }
 
 #Preview {
-    ProductsTab(productsModel: ProductsModel(), appNavigation: AppNavigation())
+    ProductsTab(productsModel: ProductsViewModel(), appNavigation: AppNavigation())
 }

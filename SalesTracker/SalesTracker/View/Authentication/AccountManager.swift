@@ -48,5 +48,5 @@ struct AccountManager: View {
 }
 
 #Preview {
-    ContentView(productsModel: ProductsModel(), appNavigation: AppNavigation(), salesModel: SalesModel())
+    ContentView(appNavigation: AppNavigation(), salesModel: SalesModel())
 }

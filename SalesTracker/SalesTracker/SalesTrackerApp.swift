@@ -19,13 +19,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct SalesTrackerApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var productsModel = ProductsModel()
     @StateObject var appNavigation = AppNavigation()
     @StateObject var salesModel = SalesModel()
     
     var body: some Scene {
         WindowGroup {
-            ContentView(productsModel: self.productsModel, appNavigation: self.appNavigation, salesModel: self.salesModel)
+            ContentView(appNavigation: self.appNavigation, salesModel: self.salesModel)
         }
     }
 }
